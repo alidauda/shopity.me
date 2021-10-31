@@ -44,7 +44,7 @@ export async function getServerSideProps({query}) {
        <main>
       <PostFeed posts={post}  user={user} />
       <StickyFooter/>
-      <nav class="nav-1">
+      <nav className="nav-1">
 
 <Button variant="contained" disableElevation  onClick={AddItems}>
     button
