@@ -1,0 +1,31 @@
+{
+  "name": "esop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.3",
+    "@mui/material": "^5.0.3",
+    "@mui/styled-engine-sc": "^5.0.3",
+    "bootstrap": "^5.1.1",
+    "firebase": "^8.2.1",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-bootstrap": "^2.0.0-rc.0",
+    "react-dom": "17.0.2",
+    "react-firebase-hooks": "^3.0.4",
+    "react-markdown": "^7.0.1",
+    "styled-components": "^5.3.1"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2"
+  }
+}
