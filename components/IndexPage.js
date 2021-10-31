@@ -135,18 +135,18 @@ async function Remove() {
 {
   return (
        
-    <div class="container mt-3 ml-5">
-  <div class="row">
-    <div class="col">
+    <div className="container mt-3 ml-5">
+  <div className="row">
+    <div className="col">
     <Button variant="contained" startIcon={<AddIcon />} onClick={Addd}>
          
       </Button>
    
     </div>
-    <div class="col text-center">
+    <div className="col text-center">
       {addd}
     </div>
-    <div class="col">
+    <div className="col">
     <Button variant="contained" startIcon={<HorizontalRuleIcon />} onClick={Remove}>
         
         </Button>
@@ -156,7 +156,7 @@ async function Remove() {
 </div>
   );
 } function ShowButton(){
-return show?<UpDateQut/>:<button type="button" class="btn  btn-lg  mt-5 ml-5 btn-primary" onClick={handleOpen} >Button</button>;
+return show?<UpDateQut/>:<button type="button" className="btn  btn-lg  mt-5 ml-5 btn-primary" onClick={handleOpen} >Button</button>;
  }
 
     return(
@@ -166,42 +166,42 @@ return show?<UpDateQut/>:<button type="button" class="btn  btn-lg  mt-5 ml-5 btn
     
   <div >
   <ElevationScroll {...props}>
-    <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand">Navbar</a>
-      <form class="d-flex justify-content-center" >
-        <input class="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+    <nav className="navbar navbar-light bg-light">
+    <div className="container-fluid">
+      <a className="navbar-brand">Navbar</a>
+      <form className="d-flex justify-content-center" >
+        <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
   </nav>
   </ElevationScroll>
   
   <div>
-  <div class="container-fluid mt-3 ">
-    <div class="row">
-      <div class="col bg-primary d-none d-sm-block">
+  <div className="container-fluid mt-3 ">
+    <div className="row">
+      <div className="col bg-primary d-none d-sm-block">
         Column
       </div>
-      <div class="col-sm  border border-3 bg-light">
-       <div class="row gy-5">
-       <div class="col  p-2">
-     <Link href={`/${user.username}/${ post.slug}`} key={post.slug}><a><img src={"/add.jpg"} class="img-fluid rounded mx-auto d-block " alt="..."/></a></Link>
-       {/* <img src={"/add.jpg"} class="rounded float-start" alt="..."/> */}
+      <div className="col-sm  border border-3 bg-light">
+       <div className="row gy-5">
+       <div className="col  p-2">
+     <Link href={`/${user.username}/${ post.slug}`} key={post.slug}><a><img src={"/add.jpg"} className="img-fluid rounded mx-auto d-block " alt="..."/></a></Link>
+       {/* <img src={"/add.jpg"} className="rounded float-start" alt="..."/> */}
       </div>
-      <div class="col">
-      <p class="fs-5">{user.displayName}</p>
-      <p class="fs-6">28kg</p>
-  <p class="fs-5">{post.slug}</p>
+      <div className="col">
+      <p className="fs-5">{user.displayName}</p>
+      <p className="fs-6">28kg</p>
+  <p className="fs-5">{post.slug}</p>
   
       </div>
-      <div class="col ">
+      <div className="col ">
      <ShowButton/>
       </div>
   
          </div> 
       </div>
-      <div class="col d-none d-sm-block bg-danger">
+      <div className="col d-none d-sm-block bg-danger">
         Column
       </div>
     </div> 
@@ -237,7 +237,7 @@ return show?<UpDateQut/>:<button type="button" class="btn  btn-lg  mt-5 ml-5 btn
       </div>
   </div>
   </div>
-   <div class=" d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
+   <div className=" d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
    <BottomNav user={user}/>
   </div> 
   <div>
