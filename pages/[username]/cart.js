@@ -30,29 +30,14 @@ export async function getServerSideProps({query}) {
 
    export  default  function Cart({post,user}){
      
-     async function AddItems(){
-       console.log("items added")
-      const userDoc=await  getUserWithUsername(user.username);
-      const postQuery= await userDoc.ref.collection("oddddd").add({
-        
-        post
-  
-      })
-     }
+     
     
      return (
        <main>
       <PostFeed posts={post}  user={user} />
-      <StickyFooter/>
-      <nav className="nav-1">
-
-<Button variant="contained" disableElevation  onClick={AddItems}>
-    button
-    </Button>
-    <Checkout user={user}/>
-    
-</nav>
      
+     
+
       
 
       

@@ -18,13 +18,13 @@ import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
-
+import{auths,serverTimestamp, getUserWithUsername}from './../lib/firebase.js';
 
 import Link from 'next/link';
 import BottomNav from './BottomNav.js';
 
 export default function IndexPageFeed({user,posts}){
-    console.log(posts);
+    
     return posts ? posts.map((post) =><IndexPduct post={post}  user={user} key={post.slug}/>):null;
 }
 function ElevationScroll(props) {
@@ -72,8 +72,7 @@ createdAt:serverTimestamp(),
 updatedAt:serverTimestamp(),
 
       });
-      console.log(userDoc.data())
-      console.log(auths.currentUser.phoneNumber);
+      
       
       setOpen(true);
       setShow(true);

@@ -5,14 +5,51 @@ import * as React from 'react';
 import Checkout from './pass';
 import {getUserWithUsername} from './../lib/firebase.js';
 export default function PostFeed({ posts, user }) {
+  async function AddItems(){
+    console.log("items added")
+   const userDoc=await  getUserWithUsername(user.username);
+   const postQuery= await userDoc.ref.collection("oddddd").add({
+     
+     posts
+
+   })
+  }
+  let p=0;
+  // for (let i = 0; i < posts.length; i++) { 
+  //   p+=(posts[i].amount);
+  //   console.log(p)
+  // }
+  console.log("done")
   return posts ? posts.map((post) =>
+ 
   <> 
 
  
   <PostItem post={post} key={post.slug}  />
   
-  
-  
+  <nav className="nav-1">
+      <div className="row align-items-start">
+    <div className="col  mt-2 ml-3">
+    <Button variant="contained" onClick={AddItems}  >
+    button
+    </Button>
+    </div>
+    <div className="col mt-3 ml-3">
+
+      TOTAL
+    </div>
+    <div className="col mt-3 ml-3">
+
+    <span>&#8358;</span>{p+=post.amount}
+    </div>
+    
+  </div>
+
+
+    
+</nav>
+<Checkout user={user}/>
+      
   </>) : null;
 }
 
@@ -68,4 +105,5 @@ function PostItem({ post }) {
         
     </main>   
   );
+  
 }

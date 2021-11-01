@@ -3,7 +3,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import PostContent from '../../lib/PostContent';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link'
-import Botton from '../../components/bottonca';
+
 export async function getStaticProps({ params }) {
     const { username, slug } = params;
     const userDoc = await getUserWithUsername(username);
@@ -49,11 +49,15 @@ export default function PostPage(props){
  <Link href={`/${post.username}`}><a className="navbar-brand"><ArrowBackIcon/></a></Link>
   </div>
 </nav>
-
+<div className="container-fluid container-sm">
+<img src={"/add.jpg"} className="img-fluid" alt="..."/>
+ 
+</div>
 
 
 <section>
   <PostContent post={post}/>
+ 
 </section>
 
         </main>

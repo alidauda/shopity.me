@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Badge from '@mui/material/Badge';
 export default function Checkout({user}){
-    console.log(user)
+    console.log("nav done")
    
     return(
 <nav className="nav">
