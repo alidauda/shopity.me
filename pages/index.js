@@ -17,57 +17,45 @@ export default function Home() {
   
   
   return (
-    <div >
-  <nav className="navbar navbar-light bg-light">
-  <div className="container-fluid">
-    <a className="navbar-brand">Navbar</a>
-    <form className="d-flex justify-content-center" >
-      <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
-      <button className="btn btn-outline-success" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-<div>
-<div className="container-fluid mt-3 ">
-  <div className="row">
-    <div className="col bg-primary d-none d-sm-block">
-      Column
+    <div > 
+      <nav className="navbar navbar-light bg-light">
+    <div className="container-fluid">
+      <a className="navbar-brand">Navbar</a>
+      <form className="d-flex justify-content-center" >
+        <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-    <div className="col-sm  border border-3 bg-light">
-     <div className="row gy-5">
-     <div className="col  p-2">
-     <img src={"/add.jpg"} className="img-fluid rounded mx-auto d-block " alt="..."/>
-     {/* <img src={"/add.jpg"} className="rounded float-start" alt="..."/> */}
-    </div>
-    <div className="col">
-    <p className="fs-4">Red bag from</p>
-    <p className="fs-6">28kg</p>
-<p className="fs-5">5000</p>
-
-    </div>
-    <div className="col ">
-    <button type="button" className="btn  btn-lg  mt-5 ml-5 btn-primary"  >Button</button>
-    </div>
-
-       </div> 
-    </div>
-    <div className="col d-none d-sm-block bg-danger">
-      Column
-    </div>
-  </div> 
-</div>
-</div>
-<div className="container-fluid fixed-bottom d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none  bg-light">
-
- 
- 
+  </nav>
+  <div className="flex flex-row ...">
+  <div className="w-1/4 bg-red-400 hidden lg:block">1</div>
+  <div className="lg:w-1/2  flex-grow">
+    <div className="flex flex-row  mx-2 my-2">
+    <img className="object-contain object-center bg-gray-200 w-24 h-24 rounded" src={"/add.jpg"}/>
+  <div className=" flex-grow ">
+  <div className="flex flex-col  mx-2">
+  <p className="font-sans antialiased text-base font-semibold tracking-tight my-2">
+  The quick brown fox jump
+</p>
+  <p className="text-xs subpixel-antialiased not-italic font-normal tracking-wide">per piece</p>
+  <div>
+  <div class="flex flex-row flex-nowrap">
+  <div className="w-1/2 ">1</div>
   
- 
-
+  <div className="flex-grow "><button className="ring-0  rounded border-1 border-blue-300  ml-10 " type="button"> ADD +</button></div>
 </div>
-<div>
-
+  </div>
+</div>
+    </div>
+    </div>
+  
+  
+  
+  
+  
+  
+  </div>
+  <div className="w-1/4 bg-yellow-500  hidden lg:block">3</div>
 </div>
     </div>
   )
