@@ -1,4 +1,4 @@
-import '../styles/globals.css'
+import 'tailwindcss/tailwind.css'
 import Head from "next/head";
 import 'bootstrap/dist/css/bootstrap.css'
 import { UserContext } from '../lib/context';

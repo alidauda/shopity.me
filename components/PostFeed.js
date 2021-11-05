@@ -54,8 +54,12 @@ export default function PostFeed({ posts, user }) {
 }
 
 function PostItem({ post }) {
-  // Naive method to calc word count and read time
  
+  // Naive method to calc word count and read time
+  
+ 
+
+ // console.log( cart['asa'].quantity);
 
   return (
     

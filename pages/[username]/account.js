@@ -28,15 +28,17 @@ export default function Test({user,post}){
     return auths.currentUser?<>
     
     <div className="container-fluid  mt-5">
+    <button type="button" className="btn btn-primary" onClick={()=>{auths.signOut()}}>Sign OUT</button>
+</div>
+   <AccountPage user={user}/>
+    </>:<>
+    <div className="container-fluid  mt-5">
     <p className="fs-2 text-center">Please u need to sign in</p>
 </div>
 <div className="container-fluid  mt-5">
     <button type="button" className="btn btn-primary" onClick={()=>{window.location='/ent'}}>Sign in</button>
 </div>
-   <AccountPage user={user}/>
-    </>:<>
-    
     <AccountPage user={user}/>
-    <div>ali</div></>;
+    </>;
 
 }

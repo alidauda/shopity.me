@@ -30,7 +30,6 @@ export async function getServerSideProps({query}) {
 
    export  default  function Cart({post,user}){
      
-     
     
      return (
        <main>

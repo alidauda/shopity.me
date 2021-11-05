@@ -18,7 +18,8 @@ import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import IconButton from '@mui/material/IconButton';
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
-
+import Cookie from 'js-cookie';
+import { v4 as uuidv4 } from 'uuid';
 
 import Link from 'next/link';
 import BottomNav from '../../components/BottomNav.js';
@@ -39,19 +40,23 @@ export async function getServerSideProps({query}) {
   }
   let user=null;
   let post =null;
+  let cartcontent=null;
+  let userID=null;
   if(userDoc){
       user=userDoc.data();
-     
+    
 const postQuery=userDoc.ref.collection('post').where('published','==',true).orderBy('createdAt','desc');
   post=(await postQuery.get()).docs.map(postToJSON)
+ const cartCount=userDoc.ref.collection("cart").doc("7d9a7c37-59c9-4776-add6-0a8985ca8394").collection("guestUserItems");
+  cartcontent=(await cartCount.get()).docs.map(postToJSON)
     }
    return {
-      props: {user,post}, // will be passed to the page component as props
+      props: {user,post,userID,cartcontent}, // will be passed to the page component as props
     }
   }
 
-export default function UserProfilePage({user,post}){
- console.log(post);
+export default function UserProfilePage({user,post,userID,cartcontent}){
+ console.log(cartcontent)
    return(<main>
 <IndexPageFeed user={user} posts={post}/>
 </main>
