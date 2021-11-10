@@ -205,7 +205,7 @@ async function Remove() {
 function ShowButton({id}){
  
 return show?<>
-<div class="btn-group mt-3 " role="group" aria-label="Basic outlined example">
+<div className="btn-group mt-3 " role="group" aria-label="Basic outlined example">
   <button type="button" className="btn btn-outline-primary" onClick={Addd}>+</button>
   
   <button type="button" className="btn btn-outline-primary"onClick={Remove}>-</button>
