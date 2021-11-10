@@ -7,15 +7,13 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import PropTypes from 'prop-types';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import Container from '@mui/material/Container';
 import * as React from 'react';
-import AddIcon from '@mui/icons-material/Add';
+
 
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 import{auths,serverTimestamp, getUserWithUsername,firestore}from './../lib/firebase.js';
