@@ -81,21 +81,21 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
         <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
           <div className="mb-0 space-y-6" >
             <div>
-              <label for="Name" className="block text-sm font-medium text-gray-700">Name</label>
-              <div class="mt-1">
-                <input  name="Name" type="Text"  required class="" />
+              <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Name</label>
+              <div className="mt-1">
+                <input  name="Name" type="Text"  required className="" />
               </div>
             </div>
     
             <div>
-              <label for="password" className="block text-sm font-medium text-gray-700">Phone Number</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Phone Number</label>
               <div className="mt-1">
                 <input  name="number" type="number"  required className="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
               </div>
             </div>
     
             <div>
-              <label for="password" className="block text-sm font-medium text-gray-700">Address</label>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Address</label>
               <div className="mt-1">
                 <input  name="address" type="text"  required className="w-full border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
               </div>
@@ -103,7 +103,7 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
     
             <div className="flex items-center">
              
-              <label for="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
+              <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
                 > By Clicking on this I agree to the
                 <a href="#" className="text-indigo-600 hover:text-indigo-500">Terms</a>
                 and
