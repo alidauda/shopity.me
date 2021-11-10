@@ -4,7 +4,7 @@ export default function Checkout({user}){
     console.log("nav done")
    
     return(
-<nav className="nav">
+<nav className="nav-2">
 <Link href={`/${user.username}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
    
    

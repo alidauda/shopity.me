@@ -12,22 +12,21 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
+
 import Container from '@mui/material/Container';
 import * as React from 'react';
 import AddIcon from '@mui/icons-material/Add';
-import IconButton from '@mui/material/IconButton';
+
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 import{auths,serverTimestamp, getUserWithUsername,firestore}from './../lib/firebase.js';
-import localForage from "localforage";
-import { useDocumentDataOnce } from 'react-firebase-hooks/firestore';
+
 
 import Link from 'next/link';
 import BottomNav from './BottomNav.js';
-import { UserContext, } from '../lib/context.js';
-import Cookie from 'js-cookie';
-import { v4 as uuidv4 } from 'uuid';
 
+import Cookie from 'js-cookie';
+import { useRouter } from 'next/router'
+import { setItem } from 'localforage';
 export default function IndexPageFeed({user,posts}){
     
     return posts ? posts.map((post) =><IndexPduct p={posts} post={post}  user={user} key={post.slug}/>):null;
@@ -59,121 +58,69 @@ function ElevationScroll(props) {
     window: PropTypes.func,
   };
   
- function componentWillMount() {
-    
-   }
  
- function IndexPduct({post,user,props,p}){
-   
+ 
+ function IndexPduct({post,user,props}){
+  let totalQuantity=0;
+  const router = useRouter()
+  firestore.collection('users')
+  
+  const [items, setitems] = useState(parseInt(Cookie.get(post.slug)));
   
 
-  if ( Cookie.get("asa")){
-    console.log("yes")
-  }else{
-    console.log(false);
-  }
- // const [postss] = useDocumentDataOnce(postRef);
- let show=false;
-  let car = [];
-  if (typeof window !== "undefined") {
-    if (localStorage?.car) {
-      car = JSON.parse(localStorage.car);
-    }
-   
- 
- }
- 
 
-   
+
   
-  // }
-  // window.addEventListener('storage', this._listener, false);
-    
-
   const [open,setOpen]=useState(false);
-  async function handleOpen   (id) { 
-    console.log(id);
+  let show=false;
+  async function handleOpen   () { 
    
-    if(Cookie.get("userID")){
-      let guestUserId = Cookie.get("userID");
+    
+    console.log("ppppp");
+ let name=user.username;
+ let slug =post.slug;
+let content="usman"
+    if(auths.currentUser) {
+      Cookie.set(post.slug, 1);
+      var num=parseInt(Cookie.get(post.slug));
       const userDoc= await getUserWithUsername(user.username);
-      const postQuery= await userDoc.ref.collection("cart").doc(guestUserId).collection("guestUserItems").add({
-        "username":"asa",
-        "quantity":1,
-        "amount":2000,
-        "slug":id,
-        
+            const postQuery= await userDoc.ref.collection("cart").doc(post.slug).set({
+              "username":name,
+              "quantity":num,
+              "amount":2000,
+              
+      content,
+      createdAt:serverTimestamp(),
+      updatedAt:serverTimestamp(),
+      slug
+      
+            });
+            
+           
+      
 
-createdAt:serverTimestamp(),
-updatedAt:serverTimestamp(),
+          
+     setitems(num);
 
-      });
+      setOpen(true);
+      show=true;
+     
+     
 
+      
+      alert("Item added");
+      
     }else{
-      let ass=uuidv4();
-
+      router.push('/ent')
+      
+      setOpen(false);
+    }
+     
+    
+    
+    }
    
-    Cookie.set("userID",ass);
-      
-      const userDoc= await getUserWithUsername(user.username);
-      const postQuery= await userDoc.ref.collection("cart").doc(ass).collection("guestUserItems").add({
-        "username":"asa",
-        "quantity":1,
-        "amount":2000,
-        "slug":id,
-        
-
-createdAt:serverTimestamp(),
-updatedAt:serverTimestamp(),
-
-      });
-    }
-    // Store
-    // if(localStorage.cart)
   
-  
-//     let name=user.username;
-
-//     let content="usman"
-//     if(auths.currentUser){
-//       const userDoc= await getUserWithUsername(user.username);
-//       const postQuery= await userDoc.ref.collection("cart").doc(post.slug).set({
-//         "username":name,
-//         "quantity":1,
-//         "amount":2000,
-        
-// content,
-// createdAt:serverTimestamp(),
-// updatedAt:serverTimestamp(),
-
-//       });
-      
-//       let get=await localForage.getItem('key');
-
-//       setOpen(true);
-//       setShow(get.name);
-
-      
-//     }else{
-      
-//       window.location='/ent'
-//       setOpen(false);
-//     }
-     
-    
-    
-    }
-    if (typeof window !== "undefined") {
-      if (localStorage.car) {
-        car =JSON.parse(localStorage.car);
-       car["me"]?show=true:show=false;
-    
-        
-      }
-     
-    
-    }
-    
       
   const handleClose = () => setOpen(false);
   const style = {
@@ -189,74 +136,87 @@ updatedAt:serverTimestamp(),
   };
   
  
- const [addd,setAdd]=useState(1);
- var counte=addd;
+ 
+ 
+const [addd,setAdd]=useState(1);
+if(parseInt(Cookie.get(post.slug))>=1){
+  var counte=parseInt(Cookie.get(post.slug));
+  console.log(typeof counte);
+  show=true;
+}else{
+  
+  var counte=parseInt(Cookie.get(post.slug));
+  show=false;
+  console.log(typeof counte);
+}
+
+
 async function Addd() {
-  number=counte+1;
+  
+    
+    
+    
+  
+  counte=counte+1;
   const userDoc= await getUserWithUsername(user.username);
   const posQuery= await userDoc.ref.collection("cart").doc(post.slug).update({
-    "quantity":number,
-    "amount":post.amount*number,
+    "quantity":counte,
+    "amount":post.amount*counte,
 
   })
   console.log("added")
- setAdd(counte);
+ 
+Cookie.set(post.slug,counte);
+const val =parseInt(Cookie.get(post.slug));
+setitems(val)
 
 }
-async function Remove() {
-  if(counte>=1){
 
-    number=counte-1;
-    const userDoc= await getUserWithUsername(user.username);
+async function Remove() {
+  const userDoc= await getUserWithUsername(user.username);
+  if(counte>1){
+
+    counte=counte-1;
+    
   const posQuery= await userDoc.ref.collection("cart").doc(post.slug).update({
-    "quantity":number,
-    "amount":post.amount/number,
+    "quantity":counte,
+    "amount":post.amount/counte,
 
   })
- setAdd(counte);
-  }
+  Cookie.set(post.slug,counte);
+
+  const val =parseInt(Cookie.get(post.slug));
+  setitems(val)
   
- setAdd(counte);
-}
- function UpDateQut()
-{
-  return (
-       
-    <div className="container mt-3 ml-5">
-  <div className="row">
-    <div className="col">
-    <Button variant="contained" startIcon={<AddIcon />} onClick={Addd}>
-         
-      </Button>
+  }else if(counte==1){
+    counte=counte-1;
+    const posQquery= await userDoc.ref.collection("cart").doc(post.slug).delete().then(()=>{
+      show=false;
+      Cookie.set(post.slug,counte);
+    });
+    setitems(counte);
+    var addme=parseInt(Cookie.get(post.slug));
+
    
-    </div>
-    <div className="col text-center">
-      {number}
-    </div>
-    <div className="col">
-    <Button variant="contained" startIcon={<HorizontalRuleIcon />} onClick={Remove}>
-        
-        </Button>
     
-    </div>
-  </div>
-</div>
-  );
-} function ShowButton({id}){
+  }
+ 
+}
+function ShowButton({id}){
+ 
+return show?<>
+<div class="btn-group mt-3 " role="group" aria-label="Basic outlined example">
+  <button type="button" className="btn btn-outline-primary" onClick={Addd}>+</button>
   
-return show?
-<>
-
-<div class="btn-group mt-3 ml-5" role="group" aria-label="Basic outlined example">
-  <button type="button" class="btn btn-outline-primary">+</button>
-  <p>ss</p>
-  <button type="button" class="btn btn-outline-primary">-</button>
+  <button type="button" className="btn btn-outline-primary"onClick={Remove}>-</button>
 </div>
-</>:
+</>:<button type="button" className="font-medium text-indigo-600 hover:text-indigo-500 btn btn-primary btn-sm btn-outline  " onClick={handleOpen}>ADD</button>;
 
-<button type="button" className="btn  btn-lg  mt-5 ml-5 btn-primary" onClick={()=>handleOpen(id)} >Button</button>;
+  
+ 
+
  }
- const {number}  = useContext(UserContext);
+
     return(
         <React.Fragment>
         <CssBaseline />  
@@ -275,37 +235,105 @@ return show?
   </nav>
   </ElevationScroll>
   
+  </div>
   <div>
-  <div className="container-fluid mt-3 ">
-    <div className="row">
-      <div className="col bg-primary d-none d-sm-block">
-        Column
-      </div>
-      <div className="col-sm  border border-3 bg-light">
-       <div className="row gy-5">
-       <div className="col  p-2">
-     <Link href={`/${user.username}/${ post.slug}`} key={post.slug}><a><img src={"/add.jpg"} className="img-fluid rounded mx-auto d-block " alt="..."/></a></Link>
-       {/* <img src={"/add.jpg"} className="rounded float-start" alt="..."/> */}
-      </div>
-      <div className="col">
-      <p className="fs-5">{user.displayName}</p>
-      <p className="fs-6">28kg</p>
-  <p className="fs-5">{post.slug}</p>
-  
-      </div>
-      <div className="col ">
-     <ShowButton id={post.slug} />
-      </div>
-  
-         </div> 
-      </div>
-      <div className="col d-none d-sm-block bg-danger">
-        Column
-      </div>
-    </div> 
-    <div>
+  <div className="flex flex-row ...">
+  <div className="w-1/4 bg-red-400 hidden lg:block">1</div>
+  <div className="lg:w-1/2  flex-grow">
+  <div className="    w-screen max-w-md ">
     
-    <Dialog open={open} onClose={handleClose}>
+    <div className=" flex-1  overflow-y-auto ">
+     
+      <div className=" ">
+        <div className="flow-root mr-2">
+          <ul role="list" className="mr-8 divide-y divide-gray-200">
+            <li className="py-6 flex ">
+              <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                <Link href={`/${user.username}/${post.slug}`}><img src={"/add.jpg"} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="w-full h-full object-center object-cover"/></Link>
+              </div>
+
+              <div className="ml-4 flex-1 flex flex-col">
+                <div>
+                  <div className="flex justify-between text-base font-medium text-gray-900">
+                    <h3>
+                      
+                        Throwback Hip Bag
+                      
+                    </h3>
+                    <p className="ml-4">
+                    <span>&#8358;</span>{post.amount}
+                    </p>
+                  </div>
+                  <p className="mt-1 text-sm text-gray-500">
+                  per 16 piece
+                  </p>
+                  
+                </div>
+                <div className="flex-1 flex items-end justify-between text-sm">
+                  <p className="text-gray-500">
+                  {items}
+                  </p>
+
+                  <div className="flex">
+                   <ShowButton id={post.slug}/>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+                      
+          </ul>
+        </div>
+      </div>
+
+
+    
+  </div>
+</div>
+  
+  {/* <ul role="list" class=" divide-y divide-gray-200 mr-3">
+                  <li class="py-6 flex  ">
+                    <div class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
+                      <img src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg" alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." class="w-full h-full object-center object-cover"/>
+                    </div>
+
+                    <div class="ml-4 flex-1 flex flex-col">
+                      <div>
+                        <div class="flex justify-between text-base font-medium text-gray-900">
+                          <h3>
+                            
+                              Throwback Hip Bag
+                            
+                          </h3>
+                          <p class="ml-4">
+                            $90.00
+                          </p>
+                        </div>
+                        <p class="mt-1 text-sm text-gray-500">
+                          Salmon
+                        </p>
+                      </div>
+                      <div class="flex-1 flex items-end justify-between text-sm">
+                        <p class="text-gray-500">
+                          Qty 1
+                        </p>
+
+                        <div class="flex">
+                          <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500">ADD</button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  </ul> */}
+  
+  
+  
+  
+  </div>
+  <div className="w-1/4 bg-yellow-500  hidden lg:block">3</div>
+</div> 
+<div>
+<Dialog open={open} onClose={handleClose}>
           <DialogTitle>Subscribe</DialogTitle>
           <DialogContent>
           <TextField
@@ -333,17 +361,24 @@ return show?
           </DialogActions>
         </Dialog>
       </div>
+      
+  
   </div>
-  </div>
-   <div className=" d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
-   <BottomNav user={user}/>
-  </div> 
+    
   <div>
   
   </div>
-      </div>
+  <div className=" d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
+   <BottomNav user={user} items={items}/>
+  </div> 
           
-      
-      </React.Fragment>   
+
+  
+  </React.Fragment>  
+   
       );
 }
+
+
+      
+      

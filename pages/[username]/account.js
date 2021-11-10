@@ -27,9 +27,7 @@ export default function Test({user,post}){
       
     return auths.currentUser?<>
     
-    <div className="container-fluid  mt-5">
-    <button type="button" className="btn btn-primary" onClick={()=>{auths.signOut()}}>Sign OUT</button>
-</div>
+    
    <AccountPage user={user}/>
     </>:<>
     <div className="container-fluid  mt-5">

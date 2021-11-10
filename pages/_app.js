@@ -1,8 +1,8 @@
 import 'tailwindcss/tailwind.css'
 import Head from "next/head";
+import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.css'
-import { UserContext } from '../lib/context';
-import { Username } from './[username]';
+
 
 function MyApp({ Component, pageProps }) {
  

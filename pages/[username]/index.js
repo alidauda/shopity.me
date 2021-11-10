@@ -40,23 +40,24 @@ export async function getServerSideProps({query}) {
   }
   let user=null;
   let post =null;
-  let cartcontent=null;
-  let userID=null;
+  let path;
+  
   if(userDoc){
       user=userDoc.data();
     
 const postQuery=userDoc.ref.collection('post').where('published','==',true).orderBy('createdAt','desc');
+
+ 
   post=(await postQuery.get()).docs.map(postToJSON)
- const cartCount=userDoc.ref.collection("cart").doc("7d9a7c37-59c9-4776-add6-0a8985ca8394").collection("guestUserItems");
-  cartcontent=(await cartCount.get()).docs.map(postToJSON)
+  
     }
    return {
-      props: {user,post,userID,cartcontent}, // will be passed to the page component as props
+      props: {user,post}, // will be passed to the page component as props
     }
   }
 
-export default function UserProfilePage({user,post,userID,cartcontent}){
- console.log(cartcontent)
+export default function UserProfilePage({user,post}){
+ 
    return(<main>
 <IndexPageFeed user={user} posts={post}/>
 </main>

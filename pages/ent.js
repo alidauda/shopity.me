@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useRouter } from 'next/router'
+
 
 import { useEffect,useState } from 'react'
 function Copyright(props) {
@@ -30,6 +32,7 @@ function Copyright(props) {
   
 const theme = createTheme();
 export default function PhoneLogin(){
+  const router = useRouter()
     
     
 
@@ -88,7 +91,7 @@ const [currentState, setCurrentState]=useState(false);
           // console.log("Result" + result.verificationID);
           let user = result.user;
           console.log(user);
-          window.history.back();
+          router.back();
         })
         .catch(function (error) {
           console.log(error);
@@ -122,8 +125,9 @@ const [currentState, setCurrentState]=useState(false);
                     required
                     fullWidth
                     id="email"
+                    type="number"
                     label="Phone Number"
-                    name="email"
+                    name="number"
                     autoComplete="email"
                     autoFocus
                     value={name}
