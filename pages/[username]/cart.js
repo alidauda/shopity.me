@@ -14,7 +14,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
 
 export  default  function Cart({username,id}){
- console.log("done");
+ 
   const[show,setShow]=useState(false);
   const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
     const items = ref.orderBy('createdAt');
