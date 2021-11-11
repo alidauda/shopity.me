@@ -3,6 +3,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import PostContent from '../../lib/PostContent';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link'
+import Metatags from '../../lib/Metatags';
 
 export async function getStaticProps({ params }) {
     const { username, slug } = params;
@@ -44,6 +45,7 @@ export default function PostPage(props){
   console.log(post.username)
     return(
         <main>
+          <Metatags title={post.title} description={post.title}/>
 <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
  <Link href={`/${post.username}`}><a className="navbar-brand"><ArrowBackIcon/></a></Link>

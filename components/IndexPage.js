@@ -65,7 +65,7 @@ function ElevationScroll(props) {
   
   const [items, setitems] = useState(parseInt(Cookie.get(post.slug)));
   
-
+const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
 
 
   
@@ -81,8 +81,11 @@ let content="usman"
     if(auths.currentUser) {
       Cookie.set(post.slug, 1);
       var num=parseInt(Cookie.get(post.slug));
+       let tot=0;
+       tot+=num;
+      
       const userDoc= await getUserWithUsername(user.username);
-            const postQuery= await userDoc.ref.collection("cart").doc(post.slug).set({
+      const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).set({
               "username":name,
               "quantity":num,
               "amount":2000,
@@ -97,7 +100,7 @@ let content="usman"
            
       
 
-          
+            setcartItems(tot);     
      setitems(num);
 
       setOpen(true);
@@ -156,8 +159,7 @@ async function Addd() {
     
   
   counte=counte+1;
-  const userDoc= await getUserWithUsername(user.username);
-  const posQuery= await userDoc.ref.collection("cart").doc(post.slug).update({
+  const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).update({
     "quantity":counte,
     "amount":post.amount*counte,
 
@@ -166,7 +168,11 @@ async function Addd() {
  
 Cookie.set(post.slug,counte);
 const val =parseInt(Cookie.get(post.slug));
+let tot=0;
+tot+=val;
+setcartItems(tot);
 setitems(val)
+
 
 }
 
@@ -176,7 +182,7 @@ async function Remove() {
 
     counte=counte-1;
     
-  const posQuery= await userDoc.ref.collection("cart").doc(post.slug).update({
+    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).update({
     "quantity":counte,
     "amount":post.amount/counte,
 
@@ -184,17 +190,19 @@ async function Remove() {
   Cookie.set(post.slug,counte);
 
   const val =parseInt(Cookie.get(post.slug));
+  let tot=0;
+tot+=val;
   setitems(val)
   
   }else if(counte==1){
     counte=counte-1;
-    const posQquery= await userDoc.ref.collection("cart").doc(post.slug).delete().then(()=>{
+    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).delete().then(()=>{
       show=false;
       Cookie.set(post.slug,counte);
     });
     setitems(counte);
     var addme=parseInt(Cookie.get(post.slug));
-
+setcartItems(tot);
    
     
   }
@@ -269,7 +277,7 @@ return show?<>
                 </div>
                 <div className="flex-1 flex items-end justify-between text-sm">
                   <p className="text-gray-500">
-                  {items}
+                  {items==NaN?0:items}
                   </p>
 
                   <div className="flex">
@@ -333,7 +341,7 @@ return show?<>
   
   </div>
   <div className=" d-md-none d-lg-block d-lg-none d-xl-block d-xl-none d-xxl-block d-xxl-none">
-   <BottomNav user={user} items={items}/>
+   <BottomNav user={user} items={cartItems}/>
   </div> 
           
 
