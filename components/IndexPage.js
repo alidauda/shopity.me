@@ -103,7 +103,7 @@ let content="usman"
             setcartItems(tot);     
      setitems(num);
 
-      setOpen(true);
+      
       show=true;
      
      
