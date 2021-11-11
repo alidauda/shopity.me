@@ -155,7 +155,7 @@ if(parseInt(Cookie.get(post.slug))>=1){
 async function Addd() {
   
     
-    
+  let tot=0;
     
   
   counte=counte+1;
@@ -168,7 +168,7 @@ async function Addd() {
  
 Cookie.set(post.slug,counte);
 const val =parseInt(Cookie.get(post.slug));
-let tot=0;
+
 tot+=val;
 setcartItems(tot);
 setitems(val)
@@ -177,6 +177,8 @@ setitems(val)
 }
 
 async function Remove() {
+  let tot=0;
+
   const userDoc= await getUserWithUsername(user.username);
   if(counte>1){
 
@@ -190,8 +192,7 @@ async function Remove() {
   Cookie.set(post.slug,counte);
 
   const val =parseInt(Cookie.get(post.slug));
-  let tot=0;
-tot+=val;
+  tot+=val;
   setitems(val)
   
   }else if(counte==1){
@@ -202,6 +203,7 @@ tot+=val;
     });
     setitems(counte);
     var addme=parseInt(Cookie.get(post.slug));
+    tot+=addme;
 setcartItems(tot);
    
     
@@ -277,7 +279,7 @@ return show?<>
                 </div>
                 <div className="flex-1 flex items-end justify-between text-sm">
                   <p className="text-gray-500">
-                  {items==NaN?0:items}
+                  {items?items:""}
                   </p>
 
                   <div className="flex">
