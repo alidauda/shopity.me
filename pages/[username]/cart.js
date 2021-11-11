@@ -61,8 +61,8 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
   function MakeEwok(){
     setShow(true);
   } 
-  function Pay(){
-    console.log(nameRef.current.value);
+  function Pay(e){
+    e.preventDefault();
     initializePayment(onSuccess, onClose)
   }
     function Page(){
@@ -81,7 +81,7 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
     
       <div className=" sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-          <div className="mb-0 space-y-6"  >
+          <form className="mb-0 space-y-6" onSubmit={Pay} >
             <div>
               <label htmlFor="Name" className="block text-sm font-medium text-gray-700">Name</label>
               <div className="mt-1">
@@ -114,9 +114,9 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
             </div>
     
             <div>
-              <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"onClick={Pay} >Checkout&nbsp;&nbsp; <span>  &#8358;</span>{total}</button>
+              <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >Checkout&nbsp;&nbsp; <span>  &#8358;</span>{total}</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
