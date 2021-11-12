@@ -45,7 +45,7 @@ export default function PostPage(props){
   console.log(post.username)
     return(
         <main>
-          <Metatags title={post.title} description={post.title} image={post.image} />
+          <Metatags title={post.title} description={post.description} image={post.image} />
 <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
  <Link href={`/${post.username}`}><a className="navbar-brand"><ArrowBackIcon/></a></Link>
