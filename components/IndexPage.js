@@ -59,6 +59,12 @@ function ElevationScroll(props) {
  
  
  function IndexPduct({post,user,props}){
+  let name=post.username;
+  let slug=post.slug;
+  let title=post.title;
+  let image=post.image;
+  let alt=post.alt;
+
   let totalQuantity=0;
   const router = useRouter()
   firestore.collection('users')
@@ -75,8 +81,7 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
    
     
     console.log("ppppp");
- let name=user.username;
- let slug =post.slug;
+ 
 let content="usman"
     if(auths.currentUser) {
       Cookie.set(post.slug, 1);
@@ -86,7 +91,10 @@ let content="usman"
       
       const userDoc= await getUserWithUsername(user.username);
       const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).set({
-              "username":name,
+              name,
+              title,
+              image,
+              alt,
               "quantity":num,
               "amount":2000,
               
@@ -234,7 +242,7 @@ return show?<>
   <ElevationScroll {...props}>
     <nav className="navbar navbar-light bg-light">
     <div className="container-fluid">
-      <a className="navbar-brand">Navbar</a>
+      <a className="navbar-brand">{user.username}</a>
       <form className="d-flex justify-content-center" >
         <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-success" type="submit">Search</button>
@@ -257,15 +265,16 @@ return show?<>
           <ul role="list" className="mr-8 divide-y divide-gray-200">
             <li className="py-6 flex ">
               <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                <Link href={`/${user.username}/${post.slug}`}><img src={"/add.jpg"} alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt." className="w-full h-full object-center object-cover"/></Link>
+                <Link href={`/${user.username}/${post.slug}`}><img src={post.image} alt={post.alt} className="w-full h-full object-center object-cover"/></Link>
               </div>
 
               <div className="ml-4 flex-1 flex flex-col">
                 <div>
                   <div className="flex justify-between text-base font-medium text-gray-900">
                     <h3>
+
                       
-                        Throwback Hip Bag
+                        {post.title}
                       
                     </h3>
                     <p className="ml-4">
@@ -273,7 +282,7 @@ return show?<>
                     </p>
                   </div>
                   <p className="mt-1 text-sm text-gray-500">
-                  per 16 piece
+                  per 1 piece
                   </p>
                   
                 </div>
