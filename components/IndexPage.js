@@ -96,7 +96,7 @@ let content="usman"
               image,
               alt,
               "quantity":num,
-              "amount":2000,
+              "amount":post.amount,
               
       content,
       createdAt:serverTimestamp(),

@@ -15,7 +15,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useRouter } from 'next/router'
 import * as React from 'react';
-
+import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react"
+import { ChakraProvider } from "@chakra-ui/react"
 
 import { useEffect,useState } from 'react'
 function Copyright(props) {
@@ -42,7 +43,7 @@ const [currentState, setCurrentState]=useState(false);
 
   const[show,setshow]=useState(false);  
    
-  
+  const[hide ,setHide] = useState("");
    
    function setUpRecaptcha  ()  {
       window.recaptchaVerifier = new fi.RecaptchaVerifier(
@@ -59,7 +60,7 @@ const [currentState, setCurrentState]=useState(false);
     };
   
    function  onSignInSubmit  (e)  {
-    
+    setHide("hidden");
      setshow(true)
       e.preventDefault();
       setUpRecaptcha();
@@ -69,6 +70,7 @@ const [currentState, setCurrentState]=useState(false);
      auths
         .signInWithPhoneNumber(phoneNumber, appVerifier)
         .then(function (confirmationResult) {
+          setHide("");
           // SMS sent. Prompt user to type the code from the message, then sign the
           // user in with confirmationResult.confirm(code).
         setCurrentState(true);
@@ -77,6 +79,7 @@ const [currentState, setCurrentState]=useState(false);
           console.log("OTP is sent");
         })
         .catch(function (error) {
+          setHide("");
           setshow(false)
           console.log(error);
         });
@@ -84,7 +87,7 @@ const [currentState, setCurrentState]=useState(false);
   
    function onSubmitOtp (e)  {
       e.preventDefault();
-     
+      setHide("hidden");
       let otpInput = OtpRef.current.value;
       let optConfirm = window.confirmationResult;
       // console.log(codee);
@@ -95,10 +98,12 @@ const [currentState, setCurrentState]=useState(false);
           // console.log("Result" + result.verificationID);
           let user = result.user;
           console.log(user);
+          setHide("");
           router.back();
         })
         .catch(function (error) {
           console.log(error);
+          setHide("");
           alert("Incorrect OTP");
         });
     };
@@ -114,7 +119,8 @@ const [currentState, setCurrentState]=useState(false);
     
       <div className=" sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-          <form className="mb-0 space-y-6" onSubmit={onSignInSubmit} >
+        <div id="recaptcha-container"></div>
+         { hide==="hidden"?<div className="mx-20"><CircularProgress isIndeterminate color="blue.400" /></div>:<form className={`mb-0 space-y-6 ${hide}`} onSubmit={onSignInSubmit} >
             
     
           <div>
@@ -126,7 +132,7 @@ const [currentState, setCurrentState]=useState(false);
     
     
             
-            <div id="recaptcha-container"></div>
+           
             <div className="flex items-center">
              
               <label htmlFor="terms-and-privacy" className="ml-2 block text-sm text-gray-900"
@@ -140,7 +146,7 @@ const [currentState, setCurrentState]=useState(false);
             <div>
               <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >Sign in</button>
             </div>
-          </form>
+          </form>}
         </div>
       </div>
     </div>
@@ -214,7 +220,7 @@ const [currentState, setCurrentState]=useState(false);
         
           <div className=" sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-              <form className="mb-0 space-y-6" onSubmit={onSubmitOtp} >
+           { hide==="hidden"?<div className="mx-20"><CircularProgress isIndeterminate color="blue.400" /></div> :  <form className="mb-0 space-y-6" onSubmit={onSubmitOtp} >
                 
         
               <div>
@@ -239,7 +245,7 @@ const [currentState, setCurrentState]=useState(false);
                 <div>
                   <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >Confirm Otp</button>
                 </div>
-              </form>
+              </form>}
             </div>
           </div>
         </div>
@@ -301,10 +307,12 @@ const [currentState, setCurrentState]=useState(false);
     }
     
       return (
+        <ChakraProvider>
         <div>
             
           {currentState?<OtpPage/>:<PPage/>}
         </div>
+        </ChakraProvider>
       );
   
   }

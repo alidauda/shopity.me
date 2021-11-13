@@ -12,9 +12,41 @@ import { usePaystackPayment } from 'react-paystack';
 import { useRouter } from 'next/router'
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
-
-
-export  default  function Cart({username}){
+import { ChakraProvider } from "@chakra-ui/react"
+export default function CheckState({username}){
+ return auths.currentUser?<Cart username={username}/>:<>
+ <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+          <div className="flex justify-between text-base font-medium text-gray-900">
+            <p>Subtotal </p>
+            <p><span>&#8358;</span></p>
+          </div>
+          <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+          <div className="mt-6 ml-20">
+          <button type="button" className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"  >Continue<span aria-hidden="true"> &rarr;</span></button>
+           
+          </div>
+          <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
+            <p>
+              or <button type="button" className="text-indigo-600 font-medium hover:text-indigo-500" >Continue Shopping<span aria-hidden="true"> &rarr;</span></button>
+            </p>
+          </div>
+        </div>
+       
+  
+        <nav className="nav-2">
+  <Link href={`/${username}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
+     
+     
+     <Link href={`/${username}/cart`} ><a className="nav__link nav__link--active"> <i className="material-icons nav__icon">shopping_cart</i>
+     <span className="nav__text">cart</span></a></Link>
+     
+    
+    
+  </nav>
+        
+ </>
+}
+  function Cart({username}){
   const  nameRef= React.useRef();
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
@@ -55,49 +87,54 @@ export  default  function Cart({username}){
       
        
    };
-  const onSuccess = (reference) => {   // Implementation for whatever you want to do with reference and after success call.
+  const onSuccess = async (reference) => { 
+    
+//     var orderId=uuidv4();
+      
+      
+     
+      
+//     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
+// name
+//     })
+//  const add= await  firestore.collection('orders').doc(auths.currentUser.uid).collection("userOrders").doc(orderId).set({
+//       name,
+//   orderId,
+//   "status":"received",
+
+// post
+
+//     });
+//     const userDoc= await getUserWithUsername(username);
+    
+//     const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+    
+
+setShow(false)
+    alert('done');
+    // Implementation for whatever you want to do with reference and after success call.
     console.log(reference);
    };
   
    
   
   
-   const onClose = () => {
+   const onClose =() => {
     
    }
    const initializePayment = usePaystackPayment(config);
    async function MakeEwok(){
     
-      var orderId=uuidv4();
-      
-      
-     
-      
-      const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
-  name
-      })
-   const add= await  firestore.collection('orders').doc(auths.currentUser.uid).collection("userOrders").doc(orderId).set({
-        name,
-    orderId,
-    "status":"received",
-  
-  post
-  
-      });
-      const userDoc= await getUserWithUsername(username);
-      
-      const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
-      
-  
-  
-      alert('done');
+     setShow(true)
     } 
     async function Pay(e){
-     
+      e.preventDefault();
+      initializePayment(onClose,onSuccess)
       
     }
       function Page(){
         return(
+        
         <main>
               
   <div className="bg-indigo-400 w-full fixed">
@@ -143,7 +180,7 @@ export  default  function Cart({username}){
                   <a href="#" className="text-indigo-600 hover:text-indigo-500">Privacy Policy</a>.
                 </label>
               </div>
-      
+            
               <div>
                 <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" >Checkout&nbsp;&nbsp; <span>  &#8358;</span>{total}</button>
               </div>
@@ -155,6 +192,7 @@ export  default  function Cart({username}){
       } 
       
        return show?<Page />:
+        
          <main>
      
         <PostFeed posts={post}  user={username} />
@@ -189,12 +227,13 @@ export  default  function Cart({username}){
         
        
         </main>
+        
        ;
   
   }
   
   
-     Cart.getInitialProps = async ({ query }) => {
+     CheckState.getInitialProps = async ({ query }) => {
     
     const {username} = query
     
