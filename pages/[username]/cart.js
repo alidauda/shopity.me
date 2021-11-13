@@ -1,5 +1,5 @@
-import { firestore,auths } from '../../lib/firebase';
-
+import { firestore,auths,getUserWithUsername } from '../../lib/firebase';
+import { v4 as uuidv4 } from 'uuid';
 import   PostFeed from '../../components/PostFeed.js'
 
 import Checkout from '../../components/pass';
@@ -24,9 +24,13 @@ export  default  function Cart({username}){
     const [querySnapshot] = useCollection(items)
   let total=0
   let quantity=0;  
+  let name;
+  let slug;
     const post = querySnapshot?.docs.map((doc) => doc.data());
     if(post){
       for (let i = 0; i < post.length; i++) { 
+name = post[i].name
+slug = post[i].slug
         total+=(post[i].amount);
         quantity+=(post[i].quantity);
         
@@ -36,6 +40,7 @@ export  default  function Cart({username}){
   const  nameRef= React.useRef();
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
+
       const config = {
      reference: (new Date()).getTime().toString(),
      email: "alidauda14@gmail.com",
@@ -59,12 +64,35 @@ const onSuccess = (reference) => {   // Implementation for whatever you want to 
   
  }
  const initializePayment = usePaystackPayment(config);
-  function MakeEwok(){
-    setShow(true);
+ async function MakeEwok(){
+  
+    var orderId=uuidv4();
+    
+    
+   
+    
+    const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
+name
+    })
+ const add= await  firestore.collection('orders').doc(auths.currentUser.uid).collection("userOrders").doc(orderId).set({
+      name,
+  orderId,
+  "status":"received",
+
+post
+
+    });
+    const userDoc= await getUserWithUsername(username);
+    
+    const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+    
+
+
+    alert('done');
   } 
-  function Pay(e){
-    e.preventDefault();
-    initializePayment(onSuccess, onClose)
+  async function Pay(e){
+   
+    
   }
     function Page(){
       return(

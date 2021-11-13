@@ -194,7 +194,7 @@ async function Remove() {
     
     const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).update({
     "quantity":counte,
-    "amount":post.amount/counte,
+    "amount":post.amount*counte,
 
   })
   Cookie.set(post.slug,counte);

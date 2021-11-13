@@ -59,6 +59,7 @@ const postQuery=userDoc.ref.collection('post').where('published','==',true).orde
 export default function UserProfilePage({user,post}){
  
    return(<main>
+    
 <IndexPageFeed user={user} posts={post}/>
 </main>
    ) ;
