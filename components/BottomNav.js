@@ -13,9 +13,7 @@ export default function BottomNav({user,items}){
     <span className="nav__text">cart</span></a></Link>
     
    
-    <Link href={`/${user.username}/account`}><a  className="nav__link"><i className="material-icons nav__icon">person</i>
-    <span className="nav__text">Account</span>
- </a></Link>
+    
  </nav>
  
   
