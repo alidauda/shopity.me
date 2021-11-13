@@ -15,32 +15,29 @@ import Badge from '@mui/material/Badge';
 
 
 export  default  function Cart({username}){
-  const[show,setShow]=useState(false);
-  let total=0
-    let quantity=0;  
-    let name;
-    let slug;
-    let post;
-  if(auths.currentUser){
-    
-    const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
-      const items = ref.orderBy('createdAt');
-      
-      
-      const [querySnapshot] = useCollection(items)
-    
-       post = querySnapshot?.docs.map((doc) => doc.data());
-      if(post){
-        for (let i = 0; i < post.length; i++) { 
-  name = post[i].name
-  slug = post[i].slug
-          total+=(post[i].amount);
-          quantity+=(post[i].quantity);
-          
-        }
-      }
-  }
+ 
   
+  
+  const[show,setShow]=useState(false);
+  const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
+    const items = ref.orderBy('createdAt');
+    
+    
+    const [querySnapshot] = useCollection(items)
+  let total=0
+  let quantity=0;  
+  let name;
+  let slug;
+    const post = querySnapshot?.docs.map((doc) => doc.data());
+    if(post){
+      for (let i = 0; i < post.length; i++) { 
+name = post[i].name
+slug = post[i].slug
+        total+=(post[i].amount);
+        quantity+=(post[i].quantity);
+        
+      }
+    }
     
   const  nameRef= React.useRef();
   const phoneNumberRef= React.useRef();
