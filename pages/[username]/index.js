@@ -59,7 +59,7 @@ const postQuery=userDoc.ref.collection('post').where('published','==',true).orde
 export default function UserProfilePage({user,post}){
  
    return(<main>
-    
+ <Metatags title={user.username} description={user.description} image={user.image}/>   
 <IndexPageFeed user={user} posts={post}/>
 </main>
    ) ;
