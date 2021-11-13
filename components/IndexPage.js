@@ -292,7 +292,7 @@ return show?<>
                   </p>
 
                   <div className="flex">
-                   <ShowButton id={post.slug}/>
+                  {post.qua===0?<p className="text-red-600">out of stock</p>: <ShowButton id={post.slug}/>}
                   </div>
                 </div>
               </div>
