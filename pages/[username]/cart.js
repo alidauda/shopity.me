@@ -15,9 +15,12 @@ import Badge from '@mui/material/Badge';
 
 
 export  default  function Cart({username}){
- 
+  const  nameRef= React.useRef();
+  const phoneNumberRef= React.useRef();
+  const addressRef= React.useRef();
+  const[show,setShow]=useState(false);
   if(auths.currentUser){
-    const[show,setShow]=useState(false);
+    
     const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
       const items = ref.orderBy('createdAt');
       
@@ -38,9 +41,7 @@ export  default  function Cart({username}){
         }
       }
       
-    const  nameRef= React.useRef();
-    const phoneNumberRef= React.useRef();
-    const addressRef= React.useRef();
+    
   
         const config = {
        reference: (new Date()).getTime().toString(),
