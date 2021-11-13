@@ -146,7 +146,10 @@ let content="usman"
   
  
  
- 
+ if(post.qua===0){
+   show=false;
+   Cookie.set(post.slug,0);
+ }
 const [addd,setAdd]=useState(1);
 if(parseInt(Cookie.get(post.slug))>=1){
   var counte=parseInt(Cookie.get(post.slug));
