@@ -19,7 +19,7 @@ export  default  function Cart({username}){
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
   const[show,setShow]=useState(false);
-  if(auths.currentUser){
+  
     
     const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
       const items = ref.orderBy('createdAt');
@@ -190,48 +190,11 @@ export  default  function Cart({username}){
        
         </main>
        ;
-  }else{
-
-   return(
-     <main>
-    
-    <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
-      <div className="flex justify-between text-base font-medium text-gray-900">
-        <p>Subtotal </p>
-        <p><span>&#8358;</span></p>
-      </div>
-      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-      <div className="mt-6 ml-20">
-      <button type="button" className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"  >Continue<span aria-hidden="true"> &rarr;</span></button>
-       
-      </div>
-      <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
-        <p>
-          or <button type="button" className="text-indigo-600 font-medium hover:text-indigo-500" >Continue Shopping<span aria-hidden="true"> &rarr;</span></button>
-        </p>
-      </div>
-    </div>
-   
-
-    <nav className="nav-2">
-<Link href={`/${username}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
- 
- 
- <Link href={`/${username}/cart`} ><a className="nav__link nav__link--active"> <i className="material-icons nav__icon">shopping_cart</i>
- <span className="nav__text">cart</span></a></Link>
- 
-
-
-</nav>
-    
-   
-    </main>
-   ); 
+  
   }
   
   
-   }
-   Cart.getInitialProps = async ({ query }) => {
+     Cart.getInitialProps = async ({ query }) => {
     
     const {username} = query
     
