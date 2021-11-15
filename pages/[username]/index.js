@@ -65,7 +65,7 @@ export default function UserProfilePage({user,post}){
         <div className=" h-96  " > <div className=" my-3 mx-3 h-32  text-center  justify-center">
         <div className="my-2"><i className="material-icons text-red-400 m-0 ">
 payments
-</i>
+</i> 
 <p className="font-sans text text-white m-0 font-light " >Payment Options</p>
 <p className="font-sans text-white m-0 font-light">Online</p>
 </div>
