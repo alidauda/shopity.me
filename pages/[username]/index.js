@@ -28,6 +28,7 @@ import BottomNav from '../../components/BottomNav.js';
 import { getUserWithUsername ,postToJSON,auths,serverTimestamp} from "../../lib/firebase";
 import Metatags from '../../lib/Metatags';
 import IndexPageFeed from '../../components/IndexPage.js';
+import Footer from '../../components/Foote.js';
 
 
 export async function getServerSideProps({query}) {
@@ -45,7 +46,7 @@ export async function getServerSideProps({query}) {
   if(userDoc){
       user=userDoc.data();
     
-const postQuery=userDoc.ref.collection('post').where('published','==',true).orderBy('createdAt','desc');
+const postQuery=userDoc.ref.collection('items').where('published','==',true).orderBy('createdAt','desc');
 
  
   post=(await postQuery.get()).docs.map(postToJSON)
@@ -61,33 +62,7 @@ export default function UserProfilePage({user,post}){
    return(<main>
  <Metatags title={user.username} description={user.description} image={user.image}/>   
 <IndexPageFeed user={user} posts={post}/>
-<div className="min-h-screen bg-gray-800 flex flex-col  ">
-        <div className=" h-96  " > <div className=" my-3 mx-3 h-32  text-center  justify-center">
-        <div className="my-2"><i className="material-icons text-red-400 m-0 ">
-payments
-</i> 
-<p className="font-sans text text-white m-0 font-light " >Payment Options</p>
-<p className="font-sans text-white m-0 font-light">Online</p>
-</div>
-        </div>
-  <div className="h-32  my-3 mx-3 text-center  justify-center"><i className="material-icons text-red-400 m-0">
-  support_agent
-</i>
-<p className="font-sans text text-white m-0 antialiased font-light" >Customer Support</p> 
-<p className="font-sans text text-white m-0 antialiased font-light" >24/7</p> 
-<p className="font-sans text-white m-0 antialiased font-light">09060390088</p></div>
-  <div className="h-32  my-3 mx-3  text-center  justify-center"><i className="material-icons text-red-400 m-0">
-  local_shipping
-</i>
-<p className="font-sans text text-white m-0 antialiased font-light" >Shipping</p>  
-<p className="font-sans text-white m-0 antialiased font-light">about 1-3 days for those in abuja</p></div></div>
-<hr className="border-2 border-red-900 border-solid "/>
-<div className="h-32  my-3 mx-3 text-center  justify-center ">
-<p className="font-sans text text-white m-0 antialiased font-light uppercase" >Store Details</p> 
-<p className="font-sans text text-white m-0 antialiased font-light " >{user.username}.me</p>  
-</div>
-
-        </div>
+<Footer username={user.username}/>
 </main>
    ) ;
 

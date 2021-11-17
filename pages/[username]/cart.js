@@ -13,7 +13,8 @@ import { useRouter } from 'next/router'
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
 import { ChakraProvider } from "@chakra-ui/react"
-export default function CheckState({username}){
+export default function CheckState({username,userDoc}){
+  
  return auths.currentUser?<Cart username={username}/>:<>
  <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
@@ -51,7 +52,8 @@ export default function CheckState({username}){
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
   const[show,setShow]=useState(false);
-  
+  const EmailRef=React.useRef();
+  const studemail=EmailRef.current.value;
     
     const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
       const items = ref.orderBy('createdAt');
@@ -77,7 +79,7 @@ export default function CheckState({username}){
   
         const config = {
        reference: (new Date()).getTime().toString(),
-       email: "alidauda14@gmail.com",
+       email: studemail,
        amount: parseInt((total)+"00"),
        publicKey: 'pk_live_390f110907a4284f7f6d43e6c7b8950bd270c870', 
        subaccount:"ACCT_nzdh6dzcnjay3v9",
@@ -88,39 +90,64 @@ export default function CheckState({username}){
        
    };
   const onSuccess = async (reference) => { 
-    
-//     var orderId=uuidv4();
+    const userDoc= await getUserWithUsername(username);
+    console.log(userDoc.data());
+  const  userPhoneNumber = auths.currentUser.phoneNumber;
+  const  userUID= auths.currentUser.uid;
+   var orderId=uuidv4();
+   const name=nameRef.current.value;
+   const address=addressRef.current.value;
+   const email=EmailRef.current.value;
+   const phoneNumber=phoneNumberRef.current.value;
       
+
       
      
       
 //     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
 // name
 //     })
-//  const add= await  firestore.collection('orders').doc(auths.currentUser.uid).collection("userOrders").doc(orderId).set({
-//       name,
-//   orderId,
-//   "status":"received",
 
-// post
+  await  userDoc.ref.collection('orders').doc(orderId).set({
+    total,    
+    name,
+     orderId,
+     address,
+     email,
+     phoneNumber,
+    
+  
+     "status":"received",
+  
+   post,
+   
+   userUID
+  
 
-//     });
+      });
+      const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+      setShow(false)
+    alert('done');
+
+
+  console.log(reference);
+
+  
 //     const userDoc= await getUserWithUsername(username);
     
-//     const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+ 
     
 
-setShow(false)
-    alert('done');
+
     // Implementation for whatever you want to do with reference and after success call.
-    console.log(reference);
+    
    };
   
    
   
   
-   const onClose =() => {
-    
+   const onClose =(reference) => {
+    console.log(reference);
    }
    const initializePayment = usePaystackPayment(config);
    async function MakeEwok(){
@@ -156,6 +183,13 @@ setShow(false)
                   <input  name="Name" type="Text"  required className="" ref={nameRef} />
                 </div>
               </div>
+              <div>
+                <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
+                <div className="mt-1">
+                  <input  name="Email" type="email"  required className="" ref={EmailRef} />
+                </div>
+              </div>
+      
       
               <div>
                 <label htmlFor="text" className="block text-sm font-medium text-gray-700">Phone Number</label>
@@ -240,7 +274,13 @@ setShow(false)
      CheckState.getInitialProps = async ({ query }) => {
     
     const {username} = query
+    try{
+     //
+      return {username}
+    }catch(e){
+      
+      return {username,e}
+    }
     
-    return {username}
   }
      
