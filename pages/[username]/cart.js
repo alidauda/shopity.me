@@ -103,31 +103,33 @@ export default function CheckState({username,userDoc}){
 
       
      
+    if(reference){
+      await  userDoc.ref.collection('orders').doc(orderId).set({
+        total,    
+        name,
+         orderId,
+         address,
+         email,
+         phoneNumber,
+        
       
+         "status":"received",
+      
+       post,
+       
+       userUID
+      
+    
+          });
+          const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+          setShow(false)
+        alert('done');
+    }  
 //     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
 // name
 //     })
 
-  await  userDoc.ref.collection('orders').doc(orderId).set({
-    total,    
-    name,
-     orderId,
-     address,
-     email,
-     phoneNumber,
-    
-  
-     "status":"received",
-  
-   post,
-   
-   userUID
-  
-
-      });
-      const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
-      setShow(false)
-    alert('done');
+ 
 
 
   console.log(reference);
