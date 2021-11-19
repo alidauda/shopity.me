@@ -27,7 +27,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths(){
   const snapshot = await firestore.collectionGroup('items').get();
   const paths=snapshot.docs.map((doc)=>{
-    const {slug, shopname}=doc.data();
+    const {slug, username}=doc.data();
     return{
       params:{username,slug},
 
@@ -45,14 +45,14 @@ export default function PostPage(props){
   console.log(post.username)
     return(
         <main>
-          <Metatags title={post.title} description={post.description} image={post.image} />
+          <Metatags title={post.title} description={post.description} images={post.images[0]} />
 <nav className="navbar navbar-light bg-light">
   <div className="container-fluid">
  <Link href={`/${post.username}`}><a className="navbar-brand"><ArrowBackIcon/></a></Link>
   </div>
 </nav>
 <div className="container-fluid container-sm">
-<img src={post.image} alt={post.alt} className="img-fluid" />
+<img src={post.images[0]} alt={post.alt} className="img-fluid" />
  
 </div>
 
