@@ -13,7 +13,7 @@ export async function getStaticProps({ params }) {
     let path;
   
     if (userDoc) {
-      const postRef = userDoc.ref.collection('post').doc(slug);
+      const postRef = userDoc.ref.collection('items').doc(slug);
       post = postToJSON(await postRef.get());
   
       path = postRef.path;
@@ -25,9 +25,9 @@ export async function getStaticProps({ params }) {
     };
   }
 export async function getStaticPaths(){
-  const snapshot = await firestore.collectionGroup('post').get();
+  const snapshot = await firestore.collectionGroup('items').get();
   const paths=snapshot.docs.map((doc)=>{
-    const {slug, username}=doc.data();
+    const {slug, shopname}=doc.data();
     return{
       params:{username,slug},
 

@@ -52,14 +52,13 @@ export default function CheckState({username,userDoc}){
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
   const[show,setShow]=useState(false);
-  const EmailRef=React.useRef();
-  const studemail=EmailRef.current.value;
+  const emailRef=React.useRef();
+  
     
     const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
-      const items = ref.orderBy('createdAt');
       
       
-      const [querySnapshot] = useCollection(items)
+      const [querySnapshot] = useCollection(ref);
     let total=0
     let quantity=0;  
     let name;
@@ -76,19 +75,19 @@ export default function CheckState({username,userDoc}){
       }
       
     
-  
-        const config = {
-       reference: (new Date()).getTime().toString(),
-       email: studemail,
-       amount: parseInt((total)+"00"),
-       publicKey: 'pk_live_390f110907a4284f7f6d43e6c7b8950bd270c870', 
-       subaccount:"ACCT_nzdh6dzcnjay3v9",
-       bearer:"subaccount",
-  
-      
-      
+      const config = {
+        reference: (new Date()).getTime().toString(),
+        email: "alidauda14@gmail.com",
+        amount: parseInt((total)+"00"),
+        publicKey: 'pk_live_390f110907a4284f7f6d43e6c7b8950bd270c870', 
+        subaccount:"ACCT_8d75as0sbzd7ko8",
+        bearer:"subaccount",
+   
        
-   };
+       
+        
+    };
+    
   const onSuccess = async (reference) => { 
     const userDoc= await getUserWithUsername(username);
     console.log(userDoc.data());
@@ -97,9 +96,9 @@ export default function CheckState({username,userDoc}){
    var orderId=uuidv4();
    const name=nameRef.current.value;
    const address=addressRef.current.value;
-   const email=EmailRef.current.value;
+   const email=emailRef.current.value;
    const phoneNumber=phoneNumberRef.current.value;
-      
+  
 
       
      
@@ -148,16 +147,49 @@ export default function CheckState({username,userDoc}){
    
   
   
-   const onClose =(reference) => {
+   const onClose =async(reference) => {
+    const userDoc= await getUserWithUsername(username);
+    console.log(userDoc.data());
+  const  userPhoneNumber = auths.currentUser.phoneNumber;
+  const  userUID= auths.currentUser.uid;
+   var orderId=uuidv4();
+   const name=nameRef.current.value;
+   const address=addressRef.current.value;
+   const email=emailRef.current.value;
+   const phoneNumber=phoneNumberRef.current.value;
+   await  userDoc.ref.collection('orders').doc(orderId).set({
+    total,    
+    name,
+     orderId,
+     address,
+     email,
+     phoneNumber,
+    
+  
+     "status":"received",
+  
+   post,
+   
+   userUID
+  
+
+      });
+      const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+      setShow(false)
+    alert('done');
+     
     console.log(reference);
    }
-   const initializePayment = usePaystackPayment(config);
+   
    async function MakeEwok(){
     
      setShow(true)
-    } 
+    }
+    const initializePayment = usePaystackPayment(config);      
     async function Pay(e){
       e.preventDefault();
+      
+   
       initializePayment(onClose,onSuccess)
       
     }
@@ -188,7 +220,7 @@ export default function CheckState({username,userDoc}){
               <div>
                 <label htmlFor="Email" className="block text-sm font-medium text-gray-700">Email</label>
                 <div className="mt-1">
-                  <input  name="Email" type="email"  required className="" ref={EmailRef} />
+                  <input  name="Email" type="email"  required className="" ref={emailRef} />
                 </div>
               </div>
       

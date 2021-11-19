@@ -46,7 +46,7 @@ export async function getServerSideProps({query}) {
   if(userDoc){
       user=userDoc.data();
     
-const postQuery=userDoc.ref.collection('post').where('published','==',true).orderBy('createdAt','desc');
+const postQuery=userDoc.ref.collection('items').where('published','==',true);
 
  
   post=(await postQuery.get()).docs.map(postToJSON)

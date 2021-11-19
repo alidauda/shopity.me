@@ -59,10 +59,10 @@ function ElevationScroll(props) {
  
  
  function IndexPduct({post,user,props}){
-  let name=post.username;
+  let name=user.shopname;
   let slug=post.slug;
   let title=post.title;
-  let image=post.image;
+  let image=post.images[0];
   let alt=post.alt;
 
   let totalQuantity=0;
@@ -82,25 +82,24 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
     
     console.log("ppppp");
  
-let content="usman"
+
     if(auths.currentUser) {
       Cookie.set(post.slug, 1);
       var num=parseInt(Cookie.get(post.slug));
        let tot=0;
        tot+=num;
       
-      const userDoc= await getUserWithUsername(user.username);
-      const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).set({
+     
+      const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).set({
               name,
               title,
               image,
               alt,
               "quantity":num,
-              "amount":post.amount,
+              "amount":post.price,
               
-      content,
-      createdAt:serverTimestamp(),
-      updatedAt:serverTimestamp(),
+    
+      
       slug
       
             });
@@ -146,7 +145,7 @@ let content="usman"
   
  
  
- if(post.qua===0){
+ if(post.quantity===0){
    show=false;
    Cookie.set(post.slug,0);
  }
@@ -170,9 +169,9 @@ async function Addd() {
     
   
   counte=counte+1;
-  const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).update({
+  const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).update({
     "quantity":counte,
-    "amount":post.amount*counte,
+    "amount":post.price*counte,
 
   })
   console.log("added")
@@ -190,14 +189,13 @@ setitems(val)
 async function Remove() {
   let tot=0;
 
-  const userDoc= await getUserWithUsername(user.username);
   if(counte>1){
 
     counte=counte-1;
     
-    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).update({
+    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).update({
     "quantity":counte,
-    "amount":post.amount*counte,
+    "amount":post.price*counte,
 
   })
   Cookie.set(post.slug,counte);
@@ -208,7 +206,7 @@ async function Remove() {
   
   }else if(counte==1){
     counte=counte-1;
-    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.username).doc(post.slug).delete().then(()=>{
+    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).delete().then(()=>{
       show=false;
       Cookie.set(post.slug,counte);
     });
@@ -245,7 +243,7 @@ return show?<>
   <ElevationScroll {...props}>
     <nav className="navbar navbar-light bg-light">
     <div className="container-fluid">
-      <a className="navbar-brand">{user.username}</a>
+      <a className="navbar-brand">{user.shopname}</a>
       <form className="d-flex justify-content-center" >
         <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-success" type="submit">Search</button>
@@ -268,7 +266,7 @@ return show?<>
           <ul role="list" className="mr-8 divide-y divide-gray-200">
             <li className="py-6 flex ">
               <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                <Link href={`/${user.username}/${post.slug}`}><img src={post.image} alt={post.alt} className="w-full h-full object-center object-cover"/></Link>
+                <Link href={`/${user.shopname}/${post.slug}`}><img src={post.images[0]} alt={post.alt} className="w-full h-full object-center object-cover"/></Link>
               </div>
 
               <div className="ml-4 flex-1 flex flex-col">
@@ -281,7 +279,7 @@ return show?<>
                       
                     </h3>
                     <p className="ml-4">
-                    <span>&#8358;</span>{post.amount}
+                    <span>&#8358;</span>{post.price}
                     </p>
                   </div>
                   <p className="mt-1 text-sm text-gray-500">
@@ -295,7 +293,7 @@ return show?<>
                   </p>
 
                   <div className="flex">
-                  {post.qua===0?<p className="text-red-600">out of stock</p>: <ShowButton id={post.slug}/>}
+                  {post.quantity===0?<p className="text-red-600">out of stock</p>: <ShowButton id={post.slug}/>}
                   </div>
                 </div>
               </div>
