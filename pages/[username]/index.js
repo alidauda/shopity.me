@@ -60,7 +60,7 @@ const postQuery=userDoc.ref.collection('items').where('published','==',true);
 export default function UserProfilePage({user,post}){
  
    return(<main>
- <Metatags title={user.username} description={user.description} image={user.image}/>   
+ <Metatags title={user.shopname} description={user.description} image={user.profile}/>   
 <IndexPageFeed user={user} posts={post}/>
 <Footer username={user.username}/>
 </main>
