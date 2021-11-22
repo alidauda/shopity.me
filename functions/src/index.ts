@@ -18,7 +18,7 @@ const user=doc.data();
 const token=user?.token;
 const payload = {
     notification: {
-      title: `You have a message from order"`,
+      title: `You have a new order"`,
       body: "click to open",
       badge: '1',
       sound: 'default'

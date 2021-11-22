@@ -1,18 +1,14 @@
 import { firestore,auths,getUserWithUsername } from '../../lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import   PostFeed from '../../components/PostFeed.js'
-
-import Checkout from '../../components/pass';
-
 import * as React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link'
 import {  useState } from 'react';
 import { usePaystackPayment } from 'react-paystack';
-import { useRouter } from 'next/router'
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
-import { ChakraProvider } from "@chakra-ui/react"
+
 export default function CheckState({username,userDoc}){
   
  return auths.currentUser?<Cart username={username}/>:<>
@@ -166,7 +162,7 @@ export default function CheckState({username,userDoc}){
      phoneNumber,
     
   
-     "status":"received",
+     "status":"pending",
   
    post,
    
