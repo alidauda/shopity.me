@@ -29,7 +29,7 @@ export async function getStaticPaths(){
   const paths=snapshot.docs.map((doc)=>{
     const {slug, username}=doc.data();
     return{
-      params:{username,slug},
+      params:{username,slug}
 
     };
   });
