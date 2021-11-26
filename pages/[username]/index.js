@@ -60,7 +60,21 @@ const postQuery=userDoc.ref.collection('items').where('published','==',true);
 export default function UserProfilePage({user,post}){
  
    return(<main>
- <Metatags title={user.shopname} description={user.description} image={user.profile}/>   
+ <Metatags title={user.shopname} description={user.description} image={user.profile}/>  
+ <div >
+  
+    <nav className="navbar navbar-light bg-light">
+    <div className="container-fluid">
+      <a className="navbar-brand">{user.shopname}</a>
+      <form className="d-flex justify-content-center" >
+        <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  
+  
+  </div> 
 <IndexPageFeed user={user} posts={post}/>
 <Footer username={user.username}/>
 </main>

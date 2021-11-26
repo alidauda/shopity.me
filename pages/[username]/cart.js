@@ -1,4 +1,4 @@
-import { firestore,auths,getUserWithUsername } from '../../lib/firebase';
+import { firestore,auths,getUserWithUsername,serverTimestamp } from '../../lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import   PostFeed from '../../components/PostFeed.js'
 import * as React from 'react';
@@ -8,6 +8,7 @@ import {  useState } from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
+import Cookie from 'js-cookie';
 
 export default function CheckState({username,userDoc}){
   
@@ -89,37 +90,71 @@ export default function CheckState({username,userDoc}){
     console.log(userDoc.data());
   const  userPhoneNumber = auths.currentUser.phoneNumber;
   const  userUID= auths.currentUser.uid;
-   var orderId=uuidv4();
-   const name=nameRef.current.value;
+  
+   const usename=nameRef.current.value;
    const address=addressRef.current.value;
    const email=emailRef.current.value;
    const phoneNumber=phoneNumberRef.current.value;
-  
+  let alt;
+  let amount;
+  let image;
+  let nam;
+  let quan;
+  let slu;
+  let title;
+
+   for (let i = 0; i < post.length; i++) { 
+    var orderId=uuidv4();
+    const phoneNumber=phoneNumberRef.current.value;
+    const usename=nameRef.current.value;
+   const address=addressRef.current.value;
+   const email=emailRef.current.value;
+    alt=post[i].alt;
+    amount=post[i].amount;
+    image=post[i].image;
+    nam=post[i].name;
+    quan=post[i].quantity;
+    slu =post[i].slug;
+    title=post[i].title;
+    userDoc.ref.collection('orders').doc(orderId).set({
+      orderId,
+      alt,
+     price: amount,
+      image,
+      name,
+       quan,
+       slug,
+      title,
+      phoneNumber,
+      usename,
+      address,
+      createdAt: serverTimestamp(),
 
       
+    
+       "status":"pending",
+    
      
-    if(reference){
-      await  userDoc.ref.collection('orders').doc(orderId).set({
-        total,    
-        name,
-         orderId,
-         address,
-         email,
-         phoneNumber,
-        
-      
-         "status":"received",
-      
-       post,
-       
-       userUID
+     
+     userUID,
+
+    
+  
+        });
+        const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slu).delete();
+        Cookie.set(slu,0)  
+          }
       
     
-          });
-          const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+       
+       
+    
+    
+     
+          
           setShow(false)
         alert('done');
-    }  
+    
 //     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
 // name
 //     })

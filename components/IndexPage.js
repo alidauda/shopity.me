@@ -239,20 +239,7 @@ return show?<>
         <CssBaseline />  
   
     
-  <div >
-  <ElevationScroll {...props}>
-    <nav className="navbar navbar-light bg-light">
-    <div className="container-fluid">
-      <a className="navbar-brand">{user.shopname}</a>
-      <form className="d-flex justify-content-center" >
-        <input className="form-control me-3 w-100" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  </ElevationScroll>
   
-  </div>
   <div>
   <div className="flex flex-row ...">
   <div className="w-1/4 bg-red-400 hidden lg:block">1</div>
