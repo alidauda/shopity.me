@@ -12,13 +12,18 @@ exports.newOrders=functions.firestore
 .document("/users/{usersId}/orders/{ordersId}")
 .onCreate((event,context) => {
     const usersId = context.params.usersId;
+    const ordersId=context.params.ordersId;
  const db=admin.firestore()
  return db.collection('users').doc(usersId).get().then((doc) => {
-const user=doc.data();
-const token=user?.token;
+  const user=doc.data();
+  var price;
+   db.collection('users').doc(usersId).collection("orders").doc(ordersId).get().then((item) =>{
+   const items=item.data()
+   price=items?.price
+   const token=user?.token;
 const payload = {
     notification: {
-      title: `You have a new order"`,
+      title: `You have a new order of ₦${price}`,
       body: "click to open",
       badge: '1',
       sound: 'default'
@@ -31,6 +36,10 @@ const payload = {
   }).catch(error => {
     return console.log('Error sending message:', error)
   })
+   
+    } );
+
+
  });
   
   
