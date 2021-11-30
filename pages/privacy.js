@@ -111,9 +111,9 @@ export default function PRIVACY() {
           </p>
         </li>
       </ul>
-      <h2 class="subHeadPvcH2">Collecting and Using Your Personal Data</h2>
-      <h3 class="subHeadPvc">Types of Data Collected</h3>
-      <h3 class="subHeadPvc">Personal Data</h3>
+      <h2 className="subHeadPvcH2">Collecting and Using Your Personal Data</h2>
+      <h3 className="subHeadPvc">Types of Data Collected</h3>
+      <h3 className="subHeadPvc">Personal Data</h3>
       <p>
         While using Our Service, We may ask You to provide Us with certain
         personally identifiable information that can be used to contact or
