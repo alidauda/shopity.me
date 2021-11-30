@@ -16,8 +16,8 @@ export default function PRIVACY() {
         the Service, You agree to the collection and use of information in
         accordance with this Privacy Policy.
       </p>
-      <h2 class="subHeadPvcH2">Interpretation and Definitions</h2>
-      <h3 class="subHeadPvc">Interpretation</h3>
+      <h2 className="subHeadPvcH2">Interpretation and Definitions</h2>
+      <h3 className="subHeadPvc">Interpretation</h3>
       <p>
         The words of which the initial letter is capitalized have meanings
         defined under the following conditions. The following definitions shall
@@ -408,8 +408,8 @@ export default function PRIVACY() {
         a country unless there are adequate controls in place including the
         security of Your data and other personal information.
       </p>
-      <h2 class="subHeadPvcH2">Disclosure of Your Personal Data</h2>
-      <h3 class="subHeadPvc">Business Transactions</h3>
+      <h2 className="subHeadPvcH2">Disclosure of Your Personal Data</h2>
+      <h3 className="subHeadPvc">Business Transactions</h3>
       <p>
         If the Company is involved in a merger, acquisition or asset sale, Your
         Personal Data may be transferred. We will provide notice before Your

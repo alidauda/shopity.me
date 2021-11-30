@@ -124,7 +124,7 @@ export default function Tem() {
         These organizations may link to our home page, to publications or to
         other Website information so long as the link:
       </p>
-      <ul class="type-alpha">
+      <ul className="type-alpha">
         <li>is not in any way deceptive;</li>
         <li>
           does not falsely imply sponsorship, endorsement or approval of the
@@ -149,7 +149,7 @@ export default function Tem() {
         We will approve link requests from these organizations if we decide
         that:
       </p>
-      <ul class="type-alpha">
+      <ul className="type-alpha">
         <li>
           the link would not make us look unfavorably to ourselves or to our
           accredited businesses;
@@ -162,7 +162,7 @@ export default function Tem() {
         <li>the link is in the context of general resource information.</li>
       </ul>
       <p>These organizations may link to our home page so long as the link:</p>
-      <ul class="type-alpha">
+      <ul className="type-alpha">
         <li>is not in any way deceptive;</li>
         <li>
           does not falsely imply sponsorship, endorsement or approval of the
@@ -258,7 +258,7 @@ export default function Tem() {
         The limitations and prohibitions of liability set in this Section and
         elsewhere in this disclaimer:
       </p>
-      <ul class="type-alpha">
+      <ul className="type-alpha">
         <li>are subject to the preceding paragraph; and</li>
         <li>
           govern all liabilities arising under the disclaimer, including
