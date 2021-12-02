@@ -86,65 +86,7 @@ export default function CheckState({username,userDoc}){
     };
     
   const onSuccess = async (reference) => { 
-    const userDoc= await getUserWithUsername(username);
-    console.log(userDoc.data());
-  const  userPhoneNumber = auths.currentUser.phoneNumber;
-  const  userUID= auths.currentUser.uid;
-  
-   const usename=nameRef.current.value;
-   const address=addressRef.current.value;
-   const email=emailRef.current.value;
-   const phoneNumber=phoneNumberRef.current.value;
-  let alt;
-  let amount;
-  let image;
-  let nam;
-  let quan;
-  let slu;
-  let title;
-
-   for (let i = 0; i < post.length; i++) { 
-    var orderId=uuidv4();
-    const phoneNumber=phoneNumberRef.current.value;
-    const usename=nameRef.current.value;
-   const address=addressRef.current.value;
-   const email=emailRef.current.value;
-    alt=post[i].alt;
-    amount=post[i].amount;
-    image=post[i].image;
-    nam=post[i].name;
-    quan=post[i].quantity;
-    slu =post[i].slug;
-    title=post[i].title;
-    userDoc.ref.collection('orders').doc(orderId).set({
-      orderId,
-      alt,
-     price: amount,
-      image,
-      name,
-       quan,
-       slug,
-      title,
-      phoneNumber,
-      usename,
-      address,
-      createdAt: serverTimestamp(),
-
-      
-    
-       "status":"pending",
-    
-     
-     
-     userUID,
-
-    
-  
-        });
-        const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slu).delete();
-        Cookie.set(slu,0)  
-          }
-      
+   
     
        
        
@@ -179,37 +121,87 @@ export default function CheckState({username,userDoc}){
   
   
    const onClose =async(reference) => {
+   if(reference.status === 'success'){
+
     const userDoc= await getUserWithUsername(username);
     console.log(userDoc.data());
   const  userPhoneNumber = auths.currentUser.phoneNumber;
   const  userUID= auths.currentUser.uid;
-   var orderId=uuidv4();
-   const name=nameRef.current.value;
+  
+   const usename=nameRef.current.value;
    const address=addressRef.current.value;
    const email=emailRef.current.value;
    const phoneNumber=phoneNumberRef.current.value;
-   await  userDoc.ref.collection('orders').doc(orderId).set({
-    total,    
-    name,
-     orderId,
-     address,
-     email,
-     phoneNumber,
+  let alt;
+  let amount;
+  let image;
+  let nam;
+  let quan;
+  let slu;
+  let title;
+
+   for (let i = 0; i < post.length; i++) { 
+     let statuss=reference.status;
+     let referenc=reference.reference;
+     let transaction=reference.transaction;
+     let message=reference.message;
+     let trans=reference.trans;
+     let trxref=reference.trxref;
+    var orderId=uuidv4();
+   let  buyerId=auths.currentUser.uid;
+    const phoneNumber=phoneNumberRef.current.value;
+    const usename=nameRef.current.value;
+   const address=addressRef.current.value;
+   const email=emailRef.current.value;
+    alt=post[i].alt;
+    amount=post[i].amount;
+    image=post[i].image;
+    nam=post[i].name;
+    quan=post[i].quantity;
+    slu =post[i].slug;
+    title=post[i].title;
+    let shopid=post[i].shopid;
+    let token=post[i].token;
+    
+    firestore.collection('orders').doc(orderId).set({
+      orderId,
+      alt,
+     price: amount,
+      image,
+      name,
+       quan,
+       slug,
+      title,
+      phoneNumber,
+      usename,
+      address,
+      createdAt: serverTimestamp(),
+      shopid,
+      buyerId,
+      token,
+      statuss,
+      referenc,
+      transaction,
+       "status":"pending",
+       message,
+       trans,
+       trxref,
+     
+     
+     userUID,
+
     
   
-     "status":"pending",
-  
-   post,
-   
-   userUID
-  
-
-      });
-      const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slug).delete();
+        });
+        const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slu).delete();
+        Cookie.set(slu,0)  
+          }
+          
       setShow(false)
-    alert('done');
-     
-    console.log(reference);
+      alert('done');
+      console.log(reference);
+   }
+    
    }
    
    async function MakeEwok(){

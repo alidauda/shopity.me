@@ -79,7 +79,8 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
   let show=false;
   async function handleOpen   () { 
    
-    
+    const token=user.token;
+    const shopid=post.shopid;
     console.log("ppppp");
  
 
@@ -88,7 +89,7 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
       var num=parseInt(Cookie.get(post.slug));
        let tot=0;
        tot+=num;
-      
+       
      
       const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).set({
               name,
@@ -100,7 +101,9 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
               
     
       
-      slug
+      slug,
+      token,
+      shopid
       
             });
             

@@ -12,7 +12,7 @@ export default function BottomNav({user,items}){
     <Link href={`/${user.shopname}/cart`}><a className="nav__link ">{items? <Badge badgeContent={items} color="primary"><i className="material-icons nav__icon">shopping_cart</i> </Badge>:<i className="material-icons nav__icon">shopping_cart</i>}
     <span className="nav__text">cart</span></a></Link>
     
-   
+    <Link href={`/${user.shopname}/account`} ><a className="   nav__link "><i className="material-icons nav__icon">person</i><span className="nav__text">account</span></a></Link>
     
  </nav>
  
