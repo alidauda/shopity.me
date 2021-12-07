@@ -35,7 +35,7 @@ function Authe({username}){
     <div>
 <div className="flex flex-col ">
   <div className="bg-red-700 p-3">Sign OUt</div>
-  <Link href={`/${username}/orders`}><div  className="bg-gray-400 p-3 text-align: center"><span class="material-icons">
+  <Link href={`/${username}/orders`}><div  className="bg-gray-400 p-3 text-align: center"><span className="material-icons">
 layers
 </span>Orders</div></Link>
   
