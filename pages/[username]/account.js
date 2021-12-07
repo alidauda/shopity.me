@@ -1,47 +1,20 @@
-import { firestore, getUserWithUsername, postToJSON,auths } from '../../lib/firebase';
+import { useAuth } from '../../lib/firebase';
 import AccountPage from '../../components/AccountPage.js'
 import Link from 'next/link';
-import Cookie from 'js-cookie';
-export async function getServerSideProps({query}) {
-    const{ username}=query;
-    const userDoc= await getUserWithUsername(username);
-    if (!userDoc) {
-     return {
-       notFound: true,
-     };
-   }
-   let item=Cookie.get("uuid");
-   let user=null;
-   let post =null;
-   if(userDoc){
-       user=userDoc.data();
+
+;
+
+
+
+export default function Test({username}){
+
+    const {userId}=useAuth();
       
- const postQuery=userDoc.ref.collection('orders').where('userUID','==',item);
-   post=(await postQuery.get()).docs.map(postToJSON)
-     }
-    return {
-       props: {user,post}, // will be passed to the page component as props
-     }
-   }
-
-
-export default function Test({user,post}){
-    console.log(item);
-      
-    return auths.currentUser?<>
+    return userId?<>
+    <Authe username={username} />
     
     
-    <nav className="nav-2 "> 
-
-    <Link href={`/${user.shopname}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
-   
-   
-    <Link href={`/${user.shopname}/cart`}><a className="nav__link "><i className="material-icons nav__icon">shopping_cart</i>
-    <span className="nav__text">cart</span></a></Link>
     
-    <Link href={`/${user.shopname}/account`} ><a className="   nav__link nav__link--active"><i className="material-icons nav__icon">person</i><span className="nav__text">account</span></a></Link>
-    
- </nav>
  
     </>:<>
     <div className="container-fluid  mt-5">
@@ -50,7 +23,46 @@ export default function Test({user,post}){
 <div className="container-fluid  mt-5">
     <button type="button" className="btn btn-primary" onClick={()=>{window.location='/ent'}}>Sign in</button>
 </div>
-    <AccountPage user={user}/>
+    <AccountPage user={username}/>
     </>;
 
+}
+
+function Authe({username}){
+  
+
+  return(
+    <div>
+<div className="flex flex-col ">
+  <div className="bg-red-700 p-3">Sign OUt</div>
+  <Link href={`/${username}/orders`}><div  className="bg-gray-400 p-3 text-align: center"><span class="material-icons">
+layers
+</span>Orders</div></Link>
+  
+</div>
+    <nav className="nav-2 "> 
+
+    <Link href={`/${username}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
+   
+   
+    <Link href={`/${username}/cart`}><a className="nav__link "><i className="material-icons nav__icon">shopping_cart</i>
+    <span className="nav__text">cart</span></a></Link>
+    
+    <Link href={`/${username}/account`} ><a className="   nav__link nav__link--active"><i className="material-icons nav__icon">person</i><span className="nav__text">account</span></a></Link>
+    
+ </nav>
+ </div>
+  );
+}
+Test.getInitialProps = async ({ query }) => {
+    
+  const {username} = query
+  try{
+   //
+    return {username}
+  }catch(e){
+    
+    return {username,e}
+  }
+  
 }

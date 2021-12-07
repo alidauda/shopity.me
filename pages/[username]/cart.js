@@ -1,4 +1,4 @@
-import { firestore,auths,getUserWithUsername,serverTimestamp } from '../../lib/firebase';
+import { firestore,useAuth,getUserWithUsername,serverTimestamp } from '../../lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
 import   PostFeed from '../../components/PostFeed.js'
 import * as React from 'react';
@@ -11,8 +11,8 @@ import Badge from '@mui/material/Badge';
 import Cookie from 'js-cookie';
 
 export default function CheckState({username,userDoc}){
-  
- return auths.currentUser?<Cart username={username}/>:<>
+  const{userId} =useAuth();
+ return userId?<Cart username={username}/>:<>
  <div className="border-t border-gray-200 py-6 px-4 sm:px-6">
           <div className="flex justify-between text-base font-medium text-gray-900">
             <p>Subtotal </p>
@@ -45,6 +45,7 @@ export default function CheckState({username,userDoc}){
  </>
 }
   function Cart({username}){
+    const{userId} =useAuth();
   const  nameRef= React.useRef();
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
@@ -52,7 +53,7 @@ export default function CheckState({username,userDoc}){
   const emailRef=React.useRef();
   
     
-    const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(username);
+    const ref = firestore.collection('cart').doc(userId).collection(username);
       
       
       const [querySnapshot] = useCollection(ref);
@@ -91,11 +92,11 @@ export default function CheckState({username,userDoc}){
        
        
     
+   
     
      
           
-          setShow(false)
-        alert('done');
+        
     
 //     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
 // name
@@ -121,86 +122,87 @@ export default function CheckState({username,userDoc}){
   
   
    const onClose =async(reference) => {
-   if(reference.status === 'success'){
-
-    const userDoc= await getUserWithUsername(username);
-    console.log(userDoc.data());
-  const  userPhoneNumber = auths.currentUser.phoneNumber;
-  const  userUID= auths.currentUser.uid;
-  
-   const usename=nameRef.current.value;
-   const address=addressRef.current.value;
-   const email=emailRef.current.value;
-   const phoneNumber=phoneNumberRef.current.value;
-  let alt;
-  let amount;
-  let image;
-  let nam;
-  let quan;
-  let slu;
-  let title;
-
-   for (let i = 0; i < post.length; i++) { 
-     let statuss=reference.status;
-     let referenc=reference.reference;
-     let transaction=reference.transaction;
-     let message=reference.message;
-     let trans=reference.trans;
-     let trxref=reference.trxref;
-    var orderId=uuidv4();
-   let  buyerId=auths.currentUser.uid;
-    const phoneNumber=phoneNumberRef.current.value;
-    const usename=nameRef.current.value;
-   const address=addressRef.current.value;
-   const email=emailRef.current.value;
-    alt=post[i].alt;
-    amount=post[i].amount;
-    image=post[i].image;
-    nam=post[i].name;
-    quan=post[i].quantity;
-    slu =post[i].slug;
-    title=post[i].title;
-    let shopid=post[i].shopid;
-    let token=post[i].token;
-    
-    firestore.collection('orders').doc(orderId).set({
-      orderId,
-      alt,
-     price: amount,
-      image,
-      name,
-       quan,
-       slug,
-      title,
-      phoneNumber,
-      usename,
-      address,
-      createdAt: serverTimestamp(),
-      shopid,
-      buyerId,
-      token,
-      statuss,
-      referenc,
-      transaction,
-       "status":"pending",
-       message,
-       trans,
-       trxref,
+     if(reference.status ==="success"){
+      const userDoc= await getUserWithUsername(username);
      
-     
-     userUID,
-
+   
     
-  
-        });
-        const remove = firestore.collection('cart').doc(auths.currentUser.uid).collection(username).doc(slu).delete();
-        Cookie.set(slu,0)  
-          }
-          
-      setShow(false)
-      alert('done');
-      console.log(reference);
-   }
+    
+      const usename=nameRef.current.value;
+      const address=addressRef.current.value;
+      const email=emailRef.current.value;
+      const phoneNumber=phoneNumberRef.current.value;
+     let alt;
+     let amount;
+     let image;
+     let nam;
+     let quan;
+     let slu;
+     let title;
+   
+      for (let i = 0; i < post.length; i++) { 
+        let statuss=reference.status;
+        let referenc=reference.reference;
+        let transaction=reference.transaction;
+        let message=reference.message;
+        let trans=reference.trans;
+        let trxref=reference.trxref;
+       var orderId=uuidv4();
+      let  buyerId=userId;
+       const phoneNumber=phoneNumberRef.current.value;
+       const usename=nameRef.current.value;
+      const address=addressRef.current.value;
+      const email=emailRef.current.value;
+       alt=post[i].alt;
+       amount=post[i].amount;
+       image=post[i].image;
+       nam=post[i].name;
+       quan=post[i].quantity;
+       slu =post[i].slug;
+       title=post[i].title;
+       let shopid=post[i].shopid;
+       let token=post[i].token;
+       
+   firestore.collection('orders').doc(orderId).set({
+         orderId,
+         alt,
+        price: amount,
+         image,
+         name,
+          quan,
+          slug,
+         title,
+         phoneNumber,
+         usename,
+         address,
+         createdAt: serverTimestamp(),
+         shopid,
+         buyerId,
+         token,
+         statuss,
+         referenc,
+         transaction,
+          "status":"pending",
+          message,
+          trans,
+          trxref,
+        
+        
+        
+   
+       
+     
+           });
+           const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
+           Cookie.set(slu,0)  
+             
+             
+         setShow(false)
+         alert('done');
+         console.log(reference);
+      }
+     }
+   
     
    }
    

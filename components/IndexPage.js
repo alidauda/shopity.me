@@ -16,7 +16,7 @@ import * as React from 'react';
 
 
 import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
-import{auths,serverTimestamp, getUserWithUsername,firestore}from './../lib/firebase.js';
+import{useAuth,serverTimestamp, getUserWithUsername,firestore}from './../lib/firebase.js';
 
 
 import Link from 'next/link';
@@ -59,6 +59,7 @@ function ElevationScroll(props) {
  
  
  function IndexPduct({post,user,props}){
+   const{userId} =useAuth();
   let name=user.shopname;
   let slug=post.slug;
   let title=post.title;
@@ -78,20 +79,20 @@ const[cartItems, setcartItems] =useState(parseInt(Cookie.get(post.slug)))
   const [open,setOpen]=useState(false);
   let show=false;
   async function handleOpen   () { 
-   
+  
     const token=user.token;
     const shopid=post.shopid;
     console.log("ppppp");
  
 
-    if(auths.currentUser) {
+    if(userId ) {
       Cookie.set(post.slug, 1);
       var num=parseInt(Cookie.get(post.slug));
        let tot=0;
        tot+=num;
        
      
-      const ref = firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).set({
+      const ref = firestore.collection('cart').doc(userId).collection(user.shopname).doc(post.slug).set({
               name,
               title,
               image,
@@ -172,7 +173,7 @@ async function Addd() {
     
   
   counte=counte+1;
-  const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).update({
+  const ref =await firestore.collection('cart').doc(userId).collection(user.shopname).doc(post.slug).update({
     "quantity":counte,
     "amount":post.price*counte,
 
@@ -196,7 +197,7 @@ async function Remove() {
 
     counte=counte-1;
     
-    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).update({
+    const ref =await firestore.collection('cart').doc(userId).collection(user.shopname).doc(post.slug).update({
     "quantity":counte,
     "amount":post.price*counte,
 
@@ -209,7 +210,7 @@ async function Remove() {
   
   }else if(counte==1){
     counte=counte-1;
-    const ref =await firestore.collection('cart').doc(auths.currentUser.uid).collection(user.shopname).doc(post.slug).delete().then(()=>{
+    const ref =await firestore.collection('cart').doc(userId).collection(user.shopname).doc(post.slug).delete().then(()=>{
       show=false;
       Cookie.set(post.slug,counte);
     });

@@ -1,5 +1,5 @@
 
-import {auths,fi} from '../lib/firebase.js';
+import {useAuth,fi} from '../lib/firebase.js';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -34,6 +34,7 @@ function Copyright(props) {
   
 const theme = createTheme();
 export default function PhoneLogin(){
+  const auth =useAuth();
   const router = useRouter()
     
   const usernameRef = React.useRef();
@@ -67,14 +68,15 @@ const [currentState, setCurrentState]=useState(false);
       let phoneNumber = "+234"+usernameRef.current.value ;
       console.log(phoneNumber);
       let appVerifier = window.recaptchaVerifier;
-     auths
-        .signInWithPhoneNumber(phoneNumber, appVerifier)
+      
+     auth
+        .signin(phoneNumber, appVerifier)
         .then(function (confirmationResult) {
           setHide("");
           // SMS sent. Prompt user to type the code from the message, then sign the
           // user in with confirmationResult.confirm(code).
         setCurrentState(true);
-          window.confirmationResult = confirmationResult;
+        window.confirmationResult = confirmationResult;
           // console.log(confirmationResult);
           console.log("OTP is sent");
         })
@@ -89,15 +91,14 @@ const [currentState, setCurrentState]=useState(false);
       e.preventDefault();
       setHide("hidden");
       let otpInput = OtpRef.current.value;
-      let optConfirm = window.confirmationResult;
+      let optConfirm = confirmationResult;
       // console.log(codee);
-      optConfirm
-        .confirm(otpInput)
+     
+        auth.confirm(otpInput)
         .then(function (result) {
           // User signed in successfully.
           // console.log("Result" + result.verificationID);
-          let user = result.user;
-          console.log(user);
+          
           setHide("");
           router.back();
         })

@@ -4,16 +4,17 @@ import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import { ChakraProvider } from "@chakra-ui/react"
+import { ProvideAuth } from '../lib/firebase';
 function MyApp({ Component, pageProps }) {
  
   return (
-  <>
+  <ProvideAuth>
   <Head>
    <meta name="viewport" content="width=device-width, initial-scale=1" />
 </Head>
   
   <Component {...pageProps} />
-  </>
+  </ProvideAuth>
   );
 }
 
