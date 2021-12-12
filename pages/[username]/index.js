@@ -76,7 +76,7 @@ export default function UserProfilePage({user,post}){
   
   </div> 
 <IndexPageFeed user={user} posts={post}/>
-<Footer username={user.username}/>
+<Footer username={user.shopname}/>
 </main>
    ) ;
 
