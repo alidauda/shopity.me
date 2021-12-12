@@ -1,6 +1,6 @@
 export default function PRIVACY() {
   return (
-    <div className="m-0,p-0">
+    <div className="m-0 p-0 ">
       <h2>Privacy Policy</h2>
       <p>
         Last updated:28 November 2021

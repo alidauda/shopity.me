@@ -9,18 +9,16 @@ admin.initializeApp();
 //   response.send("Hello from Firebase!");
 // });
 exports.newOrders=functions.firestore
-.document("/users/{usersId}/orders/{ordersId}")
+.document("/orders/{ordersId}")
 .onCreate((event,context) => {
-    const usersId = context.params.usersId;
+  
     const ordersId=context.params.ordersId;
  const db=admin.firestore()
- return db.collection('users').doc(usersId).get().then((doc) => {
+ return db.collection('orders').doc(ordersId).get().then((doc) => {
   const user=doc.data();
-  var price;
-   db.collection('users').doc(usersId).collection("orders").doc(ordersId).get().then((item) =>{
-   const items=item.data()
-   price=items?.price
-   const token=user?.token;
+  
+  const token=user?.token;
+  const price=user?.price;
 const payload = {
     notification: {
       title: `You have a new order of ₦${price}`,
@@ -37,7 +35,7 @@ const payload = {
     return console.log('Error sending message:', error)
   })
    
-    } );
+    
 
 
  });

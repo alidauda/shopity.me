@@ -166,10 +166,11 @@ export default function CheckState({username,userDoc}){
    firestore.collection('orders').doc(orderId).set({
          orderId,
          alt,
+         'total':amount,
         price: amount,
          image,
          name,
-          quan,
+          "quantity":quantity,
           slug,
          title,
          phoneNumber,
