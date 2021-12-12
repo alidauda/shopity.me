@@ -9,7 +9,7 @@ import { usePaystackPayment } from 'react-paystack';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Badge from '@mui/material/Badge';
 import Cookie from 'js-cookie';
-
+import { useRouter } from 'next/router'
 export default function CheckState({username,userDoc}){
   const{userId} =useAuth();
  return userId?<Cart username={username}/>:<>
@@ -50,8 +50,9 @@ export default function CheckState({username,userDoc}){
   const phoneNumberRef= React.useRef();
   const addressRef= React.useRef();
   const[show,setShow]=useState(false);
+  const[see,setSee]=useState(false);
   const emailRef=React.useRef();
-  
+  const router = useRouter()
     
     const ref = firestore.collection('cart').doc(userId).collection(username);
       
@@ -89,6 +90,67 @@ export default function CheckState({username,userDoc}){
   const onSuccess = async (reference) => { 
    
     
+     
+   
+    
+    // console.log("sss");
+    //   const usename=nameRef.current.value;
+    //   const address=addressRef.current.value;
+    //   const email=emailRef.current.value;
+    //   const phoneNumber=phoneNumberRef.current.value;
+    //  let alt;
+    //  let amount;
+    //  let image;
+    //  let nam;
+    //  let quan;
+    //  let slu;
+    //  let title;
+     
+//      for (let i = 0; i < post.length; i++) { 
+//       alt=post[i].alt;
+//       amount=post[i].amount;
+//       image=post[i].image;
+//       nam=post[i].name;
+//       quan=post[i].quantity;
+//       slu =post[i].slug;
+//       title=post[i].title;
+//       let shopid=post[i].shopid;
+//       let token=post[i].token;
+//       var orderId=uuidv4();
+//  await firestore.collection('o').doc(orderId).set({
+//         orderId,
+//         alt,
+//         'total':amount,
+//        price: amount,
+//         image,
+//         name,
+//          "quantity":quantity,
+//          slug,
+//         title,
+//         phoneNumber,
+//         usename,
+//         address,
+//         createdAt: serverTimestamp(),
+//         shopid,
+//         "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
+//         token,
+        
+//          "status":"pending",
+        
+       
+       
+       
+  
+      
+    
+//           });
+//           const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
+//           Cookie.set(slu,0)  
+            
+//           console.log('remove');
+//         setShow(false)
+        
+//      }
        
        
     
@@ -103,9 +165,6 @@ export default function CheckState({username,userDoc}){
 //     })
 
  
-
-
-  console.log(reference);
 
   
 //     const userDoc= await getUserWithUsername(username);
@@ -178,7 +237,7 @@ export default function CheckState({username,userDoc}){
          address,
          createdAt: serverTimestamp(),
          shopid,
-         buyerId,
+         "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
          token,
          statuss,
          referenc,
@@ -199,14 +258,18 @@ export default function CheckState({username,userDoc}){
              
              
          setShow(false)
-         alert('done');
+         setSee(true);
          console.log(reference);
       }
+
      }
-   
+   console.log("kkkk");
     
    }
-   
+   function Lol(){
+    setSee(false);
+    router.push(`/${username}`)
+   }
    async function MakeEwok(){
     
      setShow(true)
@@ -285,7 +348,22 @@ export default function CheckState({username,userDoc}){
       </main>);
       } 
       
-       return show?<Page />:
+       return show?<Page />:see?<div className="border-t border-gray-200 py-6 px-4 sm:px-6">
+       <div className="flex justify-between text-base font-medium text-gray-900">
+        
+       </div>
+       
+       <div className="mt-6 ml-20">
+       <button type="button" className="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700" onClick={Lol
+         
+       } >HOME<span aria-hidden="true"> &rarr;</span></button>
+        
+       </div>
+       <div className="mt-6 flex justify-center text-sm text-center text-gray-500">
+         
+       </div>
+     </div>
+       :
         
          <main>
      
