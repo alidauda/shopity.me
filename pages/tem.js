@@ -4,11 +4,11 @@ export default function Tem() {
       <h2>Terms and Conditions</h2>
       <p>
         These terms and conditions outline the rules and regulations for the use
-        of shopity.me&#x27;s Website, located at https://www.shopity.me.
+        of myshago.store&#x27;s Website, located at https://www.myshago.store.
       </p>
       <p>
         By accessing this website we assume you accept these terms and
-        conditions. Do not continue to use https://www.shopity.me if you do not
+        conditions. Do not continue to use https://www.myshago.store if you do not
         agree to take all of the terms and conditions stated on this page.
       </p>
       <p>
@@ -30,8 +30,8 @@ export default function Tem() {
       </p>
       <h3>Cookies</h3>
       <p>
-        We employ the use of cookies. By accessing https://www.shopity.me, you
-        agreed to use cookies in agreement with the shopity.me&#x27;s Privacy
+        We employ the use of cookies. By accessing https://www.myshago.store, you
+        agreed to use cookies in agreement with the myshago.store&#x27;s Privacy
         Policy.{" "}
       </p>
       <p>
@@ -43,20 +43,20 @@ export default function Tem() {
       </p>
       <h3>License</h3>
       <p>
-        Unless otherwise stated, shopity.me and/or its licensors own the
-        intellectual property rights for all material on https://www.shopity.me.
+        Unless otherwise stated, myshago.store and/or its licensors own the
+        intellectual property rights for all material on https://www.myshago.store.
         All intellectual property rights are reserved. You may access this from
-        https://www.shopity.me for your own personal use subjected to
+        https://www.myshago.store for your own personal use subjected to
         restrictions set in these terms and conditions.
       </p>
       <p>You must not:</p>
       <ul>
-        <li>Republish material from https://www.shopity.me</li>
-        <li>Sell, rent or sub-license material from https://www.shopity.me</li>
+        <li>Republish material from https://www.myshago.store</li>
+        <li>Sell, rent or sub-license material from https://www.myshago.store</li>
         <li>
-          Reproduce, duplicate or copy material from https://www.shopity.me
+          Reproduce, duplicate or copy material from https://www.myshago.store
         </li>
-        <li>Redistribute content from https://www.shopity.me</li>
+        <li>Redistribute content from https://www.myshago.store</li>
       </ul>
       <p>
         Parts of this website offer an opportunity for users to post and
@@ -65,13 +65,13 @@ export default function Tem() {
         their presence on the website. Comments do not reflect the views and
         opinions ofshopity.me, its agents and/or affiliates. Comments reflect
         the views and opinions of the person who post their views and opinions.
-        To the extent permitted by applicable laws, shopity.me shall not be
+        To the extent permitted by applicable laws, myshago.store shall not be
         liable for the Comments or for any liability, damages or expenses caused
         and/or suffered as a result of any use of and/or posting of and/or
         appearance of the Comments on this website.
       </p>
       <p>
-        shopity.me reserves the right to monitor all Comments and to remove any
+        myshago.store reserves the right to monitor all Comments and to remove any
         Comments which can be considered inappropriate, offensive or causes
         breach of these Terms and Conditions.
       </p>
@@ -96,7 +96,7 @@ export default function Tem() {
         </li>
       </ul>
       <p>
-        You hereby grant shopity.me a non-exclusive license to use, reproduce,
+        You hereby grant myshago.store a non-exclusive license to use, reproduce,
         edit and authorize others to use, reproduce and edit any of your
         Comments in any and all forms, formats or media.
       </p>
@@ -157,7 +157,7 @@ export default function Tem() {
         <li>the organization does not have any negative records with us;</li>
         <li>
           the benefit to us from the visibility of the hyperlink compensates the
-          absence of shopity.me; and
+          absence of myshago.store; and
         </li>
         <li>the link is in the context of general resource information.</li>
       </ul>
@@ -173,7 +173,7 @@ export default function Tem() {
       <p>
         If you are one of the organizations listed in paragraph 2 above and are
         interested in linking to our website, you must inform us by sending an
-        e-mail to shopity.me. Please include your name, your organization name,
+        e-mail to myshago.store. Please include your name, your organization name,
         contact information as well as the URL of your site, a list of any URLs
         from which you intend to link to our Website, and a list of the URLs on
         our site to which you would like to link. Wait 2-3 weeks for a response.
@@ -189,7 +189,7 @@ export default function Tem() {
         </li>
       </ul>
       <p>
-        No use of shopity.me&#x27;s logo or other artwork will be allowed for
+        No use of myshago.store&#x27;s logo or other artwork will be allowed for
         linking absent a trademark license agreement.
       </p>
       <h3>iFrames</h3>

@@ -37,7 +37,7 @@ export default function PRIVACY() {
           <p>
             <strong>Company</strong> (referred to as either &#x27;the
             Company&#x27;, &#x27;We&#x27;, &#x27;Us&#x27; or &#x27;Our&#x27; in
-            this Agreement) refers to shopity.me
+            this Agreement) refers to myshago.store
             ,No 10 Sam Okawraji, 1.
 
           </p>
@@ -99,8 +99,8 @@ export default function PRIVACY() {
         </li>
         <li>
           <p>
-            <strong>Website</strong> refers to shopity.me accessible from
-            <a href="https://www.shopity.me">www.shopity.me</a>
+            <strong>Website</strong> refers to myshago.store accessible from
+            <a href="https://www.myshago.store">www.myshago.store</a>
           </p>
         </li>
         <li>
@@ -494,7 +494,7 @@ export default function PRIVACY() {
         If you have any questions about this Privacy Policy, You can contact us:
       </p>
       <ul>
-        <li>By email: support@shopity.me</li>
+        <li>By email: support@myshago.store</li>
       </ul>
     </div>
   );
