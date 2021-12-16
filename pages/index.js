@@ -23,7 +23,7 @@ export default function Home() {
 
       <a href="index.html" className="logo d-flex align-items-center">
         <img src="/logo.png" alt=""/>
-        <span>SHOPITY</span>
+        <span>Myshago</span>
       </a>
 
       <nav id="navbar" className="navbar">
@@ -128,7 +128,7 @@ export default function Home() {
                 <div className="info-box">
                   <i className="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>support@shopity.me<br/></p>
+                  <p>support@myshago.store<br/></p>
                 </div>
               </div>
               <div className="col-md-6">
@@ -163,7 +163,7 @@ export default function Home() {
           <div className="col-lg-5 col-md-12 footer-info">
             <a href="index.html" className="logo d-flex align-items-center">
               <img src="/logo.png" alt=""/>
-              <span>Shopity</span>
+              <span>myshago.store</span>
             </a>
            
             <div className="social-links mt-3">
@@ -183,7 +183,7 @@ export default function Home() {
             <p>
             No 10 Sam Okawraji gwarinpa Abuja <br/><br/>
               <strong>Phone:</strong> 09060390088<br/>
-              <strong>Email:</strong> support@shopity.me<br/>
+              <strong>Email:</strong> support@myshago.store<br/>
             </p>
 
           </div>
@@ -194,7 +194,7 @@ export default function Home() {
 
     <div className="container">
       <div className="copyright">
-        &copy; Copyright <strong><span>Shopity</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>Myshago</span></strong>. All Rights Reserved
       </div>
       <div className="credits">
         <a href="https://bootstrapmade.com/">BootstrapMade</a>
