@@ -3,7 +3,7 @@ const description='Myshago is a platform that allows merchants with no programmi
 const SEO={
     title,
     description,  
-      canonical="https://www.myshago.store/",
+      canonical='https://www.myshago.store/',
       openGraph={
         url: 'https://www.myshago.store/',
         title,
