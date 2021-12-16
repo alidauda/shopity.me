@@ -2,7 +2,8 @@ import 'tailwindcss/tailwind.css'
 import Head from "next/head";
 import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.css'
-
+import { DefaultSeo } from 'next-seo';
+import SEO from'../next-seo-config.js';
 import { ChakraProvider } from "@chakra-ui/react"
 import { ProvideAuth } from '../lib/firebase';
 function MyApp({ Component, pageProps }) {
@@ -13,7 +14,7 @@ function MyApp({ Component, pageProps }) {
    <meta name="viewport" content="width=device-width, initial-scale=1" />
    <link rel="icon" href="/logo.ico" />
 </Head>
-  
+  <DefaultSeo {...SEO}/>
   <Component {...pageProps} />
   </ProvideAuth>
   );

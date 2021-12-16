@@ -1,35 +1,27 @@
-const title="Using More of Config",
-const description="This example uses more of the available config options.",
+const title="Myshago-create your online store in 30 seconds",
+const description="Myshago is a platform that allows merchants with no programming experience to set up an e-commerce store on their smartphone",
 const SEO={
     title,
     description,  
-      canonical="https://www.canonical.ie/",
+      canonical="https://www.myshago.store/",
       openGraph={
-        url: 'https://www.url.ie/a',
-        title: 'Open Graph Title',
-        description: 'Open Graph Description',
+        url: 'https://www.myshago.store/',
+        title,
+        description,
         images: [
           {
-            url: 'https://www.example.ie/og-image-01.jpg',
+            url: 'https://www.myshago.store/logo.png',
             width: 800,
             height: 600,
-            alt: 'Og Image Alt',
+            alt: title,
             type: 'image/jpeg',
           },
-          {
-            url: 'https://www.example.ie/og-image-02.jpg',
-            width: 900,
-            height: 800,
-            alt: 'Og Image Alt Second',
-            type: 'image/jpeg',
-          },
-          { url: 'https://www.example.ie/og-image-03.jpg' },
-          { url: 'https://www.example.ie/og-image-04.jpg' },
+          
         ],
-        site_name: 'SiteName',
+       
       },
       twitter={
-        handle: '@handle',
+        
         site: '@site',
         cardType: 'summary_large_image',
       }
