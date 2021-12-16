@@ -5,9 +5,11 @@ const SEO={
     description,  
       canonical:'https://www.myshago.store/',
       openGraph:{
+        type:'website',
         url: 'https://www.myshago.store/',
         title,
         description,
+        locale: 'en',
         images: [
           {
             url: 'https://www.myshago.store/logo.png',
@@ -18,7 +20,7 @@ const SEO={
           },
           
         ],
-       
+        site_name: 'Myshago',
       },
       twitter:{
         
