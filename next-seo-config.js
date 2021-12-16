@@ -1,5 +1,5 @@
-const title="Myshago-create your online store in 30 seconds",
-const description="Myshago is a platform that allows merchants with no programming experience to set up an e-commerce store on their smartphone",
+const title='Myshago-create your online store in 30 seconds';
+const description='Myshago is a platform that allows merchants with no programming experience to set up an e-commerce store on their smartphone';
 const SEO={
     title,
     description,  
