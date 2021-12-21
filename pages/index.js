@@ -184,6 +184,7 @@ export default function Home() {
             No 10 Sam Okawraji gwarinpa Abuja <br/><br/>
               <strong>Phone:</strong> 09060390088<br/>
               <strong>Email:</strong> support@myshago.store<br/>
+              <strong>Email:</strong>twilio here you go alidauda14@gmail.com <br/>
             </p>
 
           </div>
