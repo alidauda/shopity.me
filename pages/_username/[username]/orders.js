@@ -1,6 +1,6 @@
-import { useAuth,firestore } from '../../lib/firebase';
+import { useAuth,firestore } from 'lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore'
-import OrdersList from '../../components/Orders';
+import OrdersList from 'components/Orders';
 export default function Our(){
     const {userId}=useAuth();
   const ref = firestore.collection('orders').where("buyerId","==",userId);

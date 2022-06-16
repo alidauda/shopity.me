@@ -1,6 +1,6 @@
-import { firestore,useAuth,getUserWithUsername,serverTimestamp } from '../../lib/firebase';
+import { firestore,useAuth,getUserWithUsername,serverTimestamp } from 'lib/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import   PostFeed from '../../components/PostFeed.js'
+import   PostFeed from 'components/PostFeed.js'
 import * as React from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Link from 'next/link'
@@ -78,8 +78,8 @@ export default function CheckState({username,userDoc}){
         reference: (new Date()).getTime().toString(),
         email: "alidauda14@gmail.com",
         amount: parseInt((total)+"00"),
-        publicKey: 'pk_live_390f110907a4284f7f6d43e6c7b8950bd270c870', 
-        subaccount:"ACCT_8d75as0sbzd7ko8",
+        publicKey: 'pk_test_37335d37c9fb118d8a917de0a58a8efde1bb96c4', 
+        subaccount:"ACCT_q7qaqe5hqxhgn7s",
         bearer:"subaccount",
    
        
@@ -93,49 +93,49 @@ export default function CheckState({username,userDoc}){
      
    
     
-    // console.log("sss");
-    //   const usename=nameRef.current.value;
-    //   const address=addressRef.current.value;
-    //   const email=emailRef.current.value;
-    //   const phoneNumber=phoneNumberRef.current.value;
-    //  let alt;
-    //  let amount;
-    //  let image;
-    //  let nam;
-    //  let quan;
-    //  let slu;
-    //  let title;
+    console.log("sss");
+      const usename=nameRef.current.value;
+      const address=addressRef.current.value;
+      const email=emailRef.current.value;
+      const phoneNumber=phoneNumberRef.current.value;
+     let alt;
+     let amount;
+     let image;
+     let nam;
+     let quan;
+     let slu;
+     let title;
      
-//      for (let i = 0; i < post.length; i++) { 
-//       alt=post[i].alt;
-//       amount=post[i].amount;
-//       image=post[i].image;
-//       nam=post[i].name;
-//       quan=post[i].quantity;
-//       slu =post[i].slug;
-//       title=post[i].title;
-//       let shopid=post[i].shopid;
-//       let token=post[i].token;
-//       var orderId=uuidv4();
-//  await firestore.collection('o').doc(orderId).set({
-//         orderId,
-//         alt,
-//         'total':amount,
-//        price: amount,
-//         image,
-//         name,
-//          "quantity":quantity,
-//          slug,
-//         title,
-//         phoneNumber,
-//         usename,
-//         address,
-//         createdAt: serverTimestamp(),
-//         shopid,
-//         "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
-//         token,
+     for (let i = 0; i < post.length; i++) { 
+      alt=post[i].alt;
+      amount=post[i].amount;
+      image=post[i].image;
+      nam=post[i].name;
+      quan=post[i].quantity;
+      slu =post[i].slug;
+      title=post[i].title;
+      let shopid=post[i].shopid;
+      let token=post[i].token;
+      var orderId=uuidv4();
+ await firestore.collection('o').doc(orderId).set({
+        orderId,
+        alt,
+        'total':amount,
+       price: amount,
+        image,
+        name,
+         "quantity":quantity,
+         slug,
+        title,
+        phoneNumber,
+        usename,
+        address,
+        createdAt: serverTimestamp(),
+        shopid,
+        "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
+        token,
         
-//          "status":"pending",
+         "status":"pending",
         
        
        
@@ -143,14 +143,14 @@ export default function CheckState({username,userDoc}){
   
       
     
-//           });
-//           const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
-//           Cookie.set(slu,0)  
+          });
+          const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
+          Cookie.set(slu,0)  
             
-//           console.log('remove');
-//         setShow(false)
+          console.log('remove');
+        setShow(false)
         
-//      }
+     }
        
        
     
@@ -160,14 +160,14 @@ export default function CheckState({username,userDoc}){
           
         
     
-//     const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
-// name
-//     })
+    const ref =await  firestore.collection('orders').doc(auths.currentUser.uid).set({
+name
+    })
 
  
 
   
-//     const userDoc= await getUserWithUsername(username);
+    const userDoc= await getUserWithUsername(username);
     
  
     
@@ -181,95 +181,96 @@ export default function CheckState({username,userDoc}){
   
   
    const onClose =async(reference) => {
-     if(reference.status ==="success"){
-      const userDoc= await getUserWithUsername(username);
+     console.log(reference)
+  //    if(reference.status ==="success"){
+  //     const userDoc= await getUserWithUsername(username);
      
    
     
     
-      const usename=nameRef.current.value;
-      const address=addressRef.current.value;
-      const email=emailRef.current.value;
-      const phoneNumber=phoneNumberRef.current.value;
-     let alt;
-     let amount;
-     let image;
-     let nam;
-     let quan;
-     let slu;
-     let title;
+  //     const usename=nameRef.current.value;
+  //     const address=addressRef.current.value;
+  //     const email=emailRef.current.value;
+  //     const phoneNumber=phoneNumberRef.current.value;
+  //    let alt;
+  //    let amount;
+  //    let image;
+  //    let nam;
+  //    let quan;
+  //    let slu;
+  //    let title;
    
-      for (let i = 0; i < post.length; i++) { 
-        let statuss=reference.status;
-        let referenc=reference.reference;
-        let transaction=reference.transaction;
-        let message=reference.message;
-        let trans=reference.trans;
-        let trxref=reference.trxref;
-       var orderId=uuidv4();
-      let  buyerId=userId;
-       const phoneNumber=phoneNumberRef.current.value;
-       const usename=nameRef.current.value;
-      const address=addressRef.current.value;
-      const email=emailRef.current.value;
-       alt=post[i].alt;
-       amount=post[i].amount;
-       image=post[i].image;
-       nam=post[i].name;
-       quan=post[i].quantity;
-       slu =post[i].slug;
-       title=post[i].title;
-       let shopid=post[i].shopid;
-       let token=post[i].token;
+  //     for (let i = 0; i < post.length; i++) { 
+  //       let statuss=reference.status;
+  //       let referenc=reference.reference;
+  //       let transaction=reference.transaction;
+  //       let message=reference.message;
+  //       let trans=reference.trans;
+  //       let trxref=reference.trxref;
+  //      var orderId=uuidv4();
+  //     let  buyerId=userId;
+  //      const phoneNumber=phoneNumberRef.current.value;
+  //      const usename=nameRef.current.value;
+  //     const address=addressRef.current.value;
+  //     const email=emailRef.current.value;
+  //      alt=post[i].alt;
+  //      amount=post[i].amount;
+  //      image=post[i].image;
+  //      nam=post[i].name;
+  //      quan=post[i].quantity;
+  //      slu =post[i].slug;
+  //      title=post[i].title;
+  //      let shopid=post[i].shopid;
+  //      let token=post[i].token;
        
-   firestore.collection('orders').doc(orderId).set({
-         orderId,
-         alt,
-         'total':amount,
-        price: amount,
-         image,
-         name,
-          "quantity":quantity,
-          slug,
-         title,
-         phoneNumber,
-         usename,
-         address,
-         createdAt: serverTimestamp(),
-         shopid,
-         "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
-         token,
-         statuss,
-         referenc,
-         transaction,
-          "status":"pending",
-          message,
-          trans,
-          trxref,
+  //  firestore.collection('orders').doc(orderId).set({
+  //        orderId,
+  //        alt,
+  //        'total':amount,
+  //       price: amount,
+  //        image,
+  //        name,
+  //         "quantity":quantity,
+  //         slug,
+  //        title,
+  //        phoneNumber,
+  //        usename,
+  //        address,
+  //        createdAt: serverTimestamp(),
+  //        shopid,
+  //        "buyerId":"vOITooeyQ3h2z43fo9Mdso1xlUS2",
+  //        token,
+  //        statuss,
+  //        referenc,
+  //        transaction,
+  //         "status":"pending",
+  //         message,
+  //         trans,
+  //         trxref,
         
         
         
    
        
      
-           });
-           const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
-           Cookie.set(slu,0)  
+  //          });
+  //          const remove = firestore.collection('cart').doc(userId).collection(username).doc(slu).delete();
+  //          Cookie.set(slu,0)  
              
              
-         setShow(false)
-         setSee(true);
-         console.log(reference);
-      }
+  //        setShow(false)
+  //        setSee(true);
+  //        console.log(reference);
+  //     }
 
-     }
-   console.log("kkkk");
+  //    }
+  //  console.log("kkkk");
     
-   }
-   function Lol(){
-    setSee(false);
-    router.push(`/${username}`)
-   }
+  };
+  //  function Lol(){
+  //   setSee(false);
+  //   router.push(`/${username}`)
+  //  }
    async function MakeEwok(){
     
      setShow(true)

@@ -5,10 +5,10 @@ import {
   postToJSON,
   auths,
   serverTimestamp,
-} from "../../lib/firebase";
-import Metatags from "../../lib/Metatags";
-import IndexPageFeed from "../../components/IndexPage.js";
-import Footer from "../../components/Foote.js";
+} from "lib/firebase";
+import Metatags from "lib/Metatags";
+import IndexPageFeed from "components/IndexPage.js";
+import Footer from "components/Foote.js";
 
 export async function getServerSideProps({ query }) {
   const { username } = query;
