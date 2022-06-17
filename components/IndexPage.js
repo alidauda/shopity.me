@@ -1,21 +1,11 @@
 import { useEffect, useState,useContext } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import PropTypes from 'prop-types';
 
-import CssBaseline from '@mui/material/CssBaseline';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
 
-import Container from '@mui/material/Container';
+
 import * as React from 'react';
 
 
-import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
+
 import{useAuth,serverTimestamp, getUserWithUsername,firestore}from './../lib/firebase.js';
 
 
@@ -29,32 +19,9 @@ export default function IndexPageFeed({user,posts}){
     
     return posts ? posts.map((post) =><IndexPduct p={posts} post={post}  user={user} key={post.slug}/>):null;
 }
-function ElevationScroll(props) {
+
   
-  
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
-    const trigger = useScrollTrigger({
-      disableHysteresis: true,
-      threshold: 0,
-      target: window ? window() : undefined,
-    });
-  
-    return React.cloneElement(children, {
-      elevation: trigger ? 4 : 0,
-    });
-  }
-  
-  ElevationScroll.propTypes = {
-    children: PropTypes.element.isRequired,
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
-  };
+
   
  
  
@@ -240,7 +207,7 @@ return show?<>
 
     return(
         <React.Fragment>
-        <CssBaseline />  
+  
   
     
   
@@ -308,33 +275,7 @@ return show?<>
   <div className="w-1/4 bg-yellow-500  hidden lg:block">3</div>
 </div> 
 <div>
-<Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Subscribe</DialogTitle>
-          <DialogContent>
-          <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Enter quantity"
-              type="number"
-              fullWidth
-              variant="standard"
-            />
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Subscribe</Button>
-          </DialogActions>
-        </Dialog>
+
       </div>
       
   

@@ -1,35 +1,18 @@
 import { useAuth, fi } from "/lib/firebase.js";
 
-import Link from "@mui/material/Link";
 
-import Typography from "@mui/material/Typography";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+
 import { useRouter } from "next/router";
 import * as React from "react";
-import { CircularProgress, CircularProgressLabel } from "@chakra-ui/react";
-import { ChakraProvider } from "@chakra-ui/react";
+
+
 
 import { useEffect, useState } from "react";
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
-const theme = createTheme();
+
+
 export default function PhoneLogin() {
   const auth = useAuth();
   const router = useRouter();
@@ -114,11 +97,7 @@ export default function PhoneLogin() {
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
             <div id="recaptcha-container"></div>
-            {hide === "hidden" ? (
-              <div className="mx-20">
-                <CircularProgress isIndeterminate color="blue.400" />
-              </div>
-            ) : (
+             (
               <form
                 className={`mb-0 space-y-6 ${hide}`}
                 onSubmit={(e)=>onSignInSubmit(e)}
@@ -175,7 +154,7 @@ export default function PhoneLogin() {
                   </button>
                 </div>
               </form>
-            )}
+            
           </div>
         </div>
       </div>
@@ -247,11 +226,11 @@ export default function PhoneLogin() {
 
         <div className=" sm:mx-auto sm:w-full sm:max-w-md">
           <div className="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
-            {hide === "hidden" ? (
+            
               <div className="mx-20">
-                <CircularProgress isIndeterminate color="blue.400" />
+                
               </div>
-            ) : (
+           
               <form className="mb-0 space-y-6" onSubmit={(e)=>onSubmitOtp(e)}>
                 <div>
                   <label
@@ -304,7 +283,7 @@ export default function PhoneLogin() {
                   </button>
                 </div>
               </form>
-            )}
+           
           </div>
         </div>
       </div>
@@ -365,8 +344,8 @@ export default function PhoneLogin() {
   }
 
   return (
-    <ChakraProvider>
+    
       <div>{currentState ? <OtpPage /> : <PPage />}</div>
-    </ChakraProvider>
+  
   );
 }

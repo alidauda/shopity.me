@@ -2,12 +2,12 @@ import { firestore,useAuth,getUserWithUsername,serverTimestamp } from 'lib/fireb
 import { v4 as uuidv4 } from 'uuid';
 import   PostFeed from 'components/PostFeed.js'
 import * as React from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import Link from 'next/link'
 import {  useState } from 'react';
 import { usePaystackPayment } from 'react-paystack';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import Badge from '@mui/material/Badge';
+
 import Cookie from 'js-cookie';
 import { useRouter } from 'next/router'
 export default function CheckState({username,userDoc}){
@@ -289,7 +289,7 @@ name
         <main>
               
   <div className="bg-indigo-400 w-full fixed">
-  <button onClick={()=>setShow(false)} ><a className="m-2 my-8 "><ArrowBackIcon/></a></button>
+  <button onClick={()=>setShow(false)} ><a className="m-2 my-8 "></a></button>
   </div>
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -395,7 +395,7 @@ name
   <Link href={`/${username}`} ><a className="   nav__link "><i className="material-icons nav__icon">home</i><span className="nav__text">home</span></a></Link>
      
      
-     <Link href={`/${username}/cart`} ><a className="nav__link nav__link--active">{quantity==0? <i className="material-icons nav__icon">shopping_cart</i>:<Badge badgeContent={quantity} color="primary"><i className="material-icons nav__icon">shopping_cart</i> </Badge>}
+     <Link href={`/${username}/cart`} ><a className="nav__link nav__link--active"> <i className="material-icons nav__icon">shopping_cart</i>
      <span className="nav__text">cart</span></a></Link>
      
     

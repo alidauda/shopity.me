@@ -1,7 +1,7 @@
 import { firestore, getUserWithUsername, postToJSON } from 'lib/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import PostContent from 'lib/PostContent';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 import Link from 'next/link'
 import Metatags from 'lib/Metatags';
 
@@ -50,7 +50,7 @@ export default function PostPage(props){
   <div className="container-fluid">
  <a className="navbar-brand"onClick={()=>{
    window.history.back();
- }}><ArrowBackIcon/></a>
+ }}></a>
   </div>
 </nav>
 <div className="container-fluid container-sm">
