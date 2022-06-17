@@ -35,7 +35,8 @@ function MyApp({ Component, pageProps }) {
   <ProvideAuth>
   <Head>
    <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="icon" href="/logo.ico" />
+   <link rel="icon" href="/shopity.png" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=optional" />
 </Head>
   <DefaultSeo {...SEO}/>
   <Progress isAnimating={isAnimating} />

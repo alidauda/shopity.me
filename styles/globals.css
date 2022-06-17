@@ -58,3 +58,7 @@ ul{
 .test1{
   max-width: 300px;
 }
+
+.third{
+  flex-basis:33.3%;
+}
