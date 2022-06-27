@@ -64,8 +64,8 @@ export default function PhoneLogin() {
       });
   }
 
-  function onSubmitOtp(e) {
-    e.preventDefault();
+  function onSubmitOtp() {
+    
     setHide("hidden");
     let otpInput = OtpRef.current.value;
     let optConfirm = confirmationResult;
@@ -76,7 +76,7 @@ export default function PhoneLogin() {
       .then(function (result) {
         // User signed in successfully.
         // console.log("Result" + result.verificationID);
-        onClose();
+       router.push("/admin")
       })
       .catch(function (error) {
         console.log(error);
