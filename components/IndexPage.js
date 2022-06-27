@@ -224,7 +224,7 @@ return show?<>
           <ul role="list" className="mr-8 divide-y divide-gray-200">
             <li className="py-6 flex ">
               <div className="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                <Link href={`/${post.slug}`}><img src={post.images[0]} alt={post.alt} className="w-full h-full object-center object-cover"/></Link>
+                <Link href={`/${post.username}/${post.slug}`}><img src={post.images[0]} alt={post.alt} className="w-full h-full object-center object-cover"/></Link>
               </div>
 
               <div className="ml-4 flex-1 flex flex-col">
