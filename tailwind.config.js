@@ -15,7 +15,8 @@ module.exports = {
       },
       colors:{
         "normal":"#10b981",
-        "hover":"#34d399"
+        "hover":"#34d399",
+        "bg":"#dcfce7"
       },
       margin:{
         "cn": "0 auto"

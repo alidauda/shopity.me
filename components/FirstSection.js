@@ -12,13 +12,13 @@ export default function FirstSection(){
                 E-commerce platform for growing businesses
               </h1>
               <p className=" mt-4 mb-10 leading-7 text-center md:text-left">
-              Launch, scale and manage your business with Dukaan’s all-in-one commerce platform
+              Launch, scale and manage your business with Myshago all-in-one commerce platform
               </p>
-               <div className="  flex md:justify-start justify-center">
+               {/* <div className="  flex md:justify-start justify-center">
               <Link href="#"  ><a><div className="   test1 text-center block whitespace-nowrap py-4 px-6 border-2 rounded-lg bg-normal  hover:bg-hover">Create free account</div></a></Link>
-              </div>
+              </div> */}
               <div className="  flex md:justify-start justify-center">
-               <Link  href="#"><a className="ml-0 mt-0"><Image src={google} alt="google play store link" width={300}
+               <Link  href="https://play.google.com/store/apps/details?id=com.shopity.shopity"><a className="ml-0 mt-0"><Image src={google} alt="google play store link" width={300}
                height={150} /></a></Link>
              </div>
             </div>

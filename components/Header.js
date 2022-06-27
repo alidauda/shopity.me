@@ -21,7 +21,7 @@ export default function Header(){
                 </a>
               </Link>
             </li>
-            <li>
+        <div className="hidden md:flex md:gap-50px">    <li>
               <Link className="" href="#/">
                 Privacy
               </Link>
@@ -30,15 +30,15 @@ export default function Header(){
               <Link className="" href="#">
                 Terms and Conditions
               </Link>
-            </li>
+            </li></div>
           </ul>
 
           <ul className="flex flex-row gap-3 items-center ">
-            <li className="border-2 rounded-lg py-2 px-3 block hover:border-hover hover:text-hover">
+            {/* <li className="border-2 rounded-lg py-2 px-3 block hover:border-hover hover:text-hover">
               <Link href="#">Sign in</Link>
-            </li>
+            </li> */}
             <li className="whitespace-nowrap py-4 px-6 border-2 rounded-lg bg-normal block hover:bg-hover ">
-              <Link href="#">Create free account</Link>
+              <Link href="https://play.google.com/store/apps/details?id=com.shopity.shopity">Get Started</Link>
             </li>
           </ul>
         </nav>
